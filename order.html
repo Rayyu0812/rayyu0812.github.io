@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/rayyu/Downloads/order_9.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>.pac-container{background-color:#fff;position:absolute!important;z-index:1000;border-radius:2px;border-top:1px solid #d9d9d9;font-family:Arial,sans-serif;-webkit-box-shadow:0 2px 6px rgba(0,0,0,.3);box-shadow:0 2px 6px rgba(0,0,0,.3);-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.pac-logo:after{content:"";padding:1px 1px 1px 0;height:18px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:right;display:block;background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);background-position:100%;background-repeat:no-repeat;-webkit-background-size:120px 14px;background-size:120px 14px}.hdpi.pac-logo:after{background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png)}.pac-item{cursor:default;padding:0 4px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;line-height:30px;text-align:left;border-top:1px solid #e6e6e6;font-size:11px;color:#515151}.pac-item:hover{background-color:#fafafa}.pac-item-selected,.pac-item-selected:hover{background-color:#ebf2fe}.pac-matched{font-weight:700}.pac-item-query{font-size:13px;padding-right:3px;color:#000}.pac-icon{width:15px;height:20px;margin-right:7px;margin-top:6px;display:inline-block;vertical-align:top;background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons.png);-webkit-background-size:34px 34px;background-size:34px}.hdpi .pac-icon{background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons_hdpi.png)}.pac-icon-search{background-position:-1px -1px}.pac-item-selected .pac-icon-search{background-position:-18px -1px}.pac-icon-marker{background-position:-1px -161px}.pac-item-selected .pac-icon-marker{background-position:-18px -161px}.pac-placeholder{color:gray}sentinel{}
-</style>
+<!-- saved from url=(0043)file:///C:/Users/rayyu/Downloads/order.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HooRay Bakery — Order</title>
@@ -146,8 +145,11 @@ nav{background:var(--white);border-bottom:1px solid rgba(181,132,58,.15);padding
 footer{text-align:center;padding:28px;font-size:.77rem;color:var(--muted);border-top:1px solid rgba(181,132,58,.15)}
 footer a{color:var(--gold);text-decoration:none}
 </style>
-<script src="./order_files/js" async="" defer=""></script>
-<script type="text/javascript" charset="UTF-8" src="./order_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./order_files/util.js.download"></script><script type="text/javascript" charset="UTF-8" src="./order_files/controls.js.download"></script><script type="text/javascript" charset="UTF-8" src="./order_files/places_impl.js.download"></script></head>
+<script>
+(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+({key: "AIzaSyDLjUO-Nk_LPzhQ0hoJHbbkSvxx2vZjKJQ", v: "weekly"});
+</script>
+</head>
 <body>
 
 <div class="closed-overlay" id="closedOverlay">
@@ -187,7 +189,7 @@ footer a{color:var(--gold);text-decoration:none}
             <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
           </label>
         </div></div>
-      <div class="product-right"><div class="product-price">$10.00</div><button class="add-btn" onclick="addItem(1)">Add</button></div></div><div class="product-card"><div class="product-emoji">🍵</div>
+      <div class="product-right"><div class="product-price">$10.00</div><div class="qty-row"><button class="qty-btn" onclick="changeQty(&#39;1-0&#39;,-1)">−</button><span class="qty-num">1</span><button class="qty-btn" onclick="changeQty(&#39;1-0&#39;,1)">+</button></div></div></div><div class="product-card"><div class="product-emoji">🍵</div>
       <div class="product-body"><div class="product-name">Matcha Milk Loaf</div><div class="product-desc">15oz · Earthy matcha swirled into our signature milk bread</div><div class="slice-option">
           <input type="checkbox" id="slice-2" onchange="toggleSlice(2,this.checked)">
           <label class="slice-label" for="slice-2">Sliced
@@ -214,26 +216,27 @@ footer a{color:var(--gold);text-decoration:none}
     <div class="order-card">
       <div class="order-card-title">Your Order <span class="clear-all" onclick="clearCart()">Clear all</span></div>
 
-      <div id="orderItems"><div class="empty-state"><span class="ei">🍞</span>Pick something from the menu!</div></div>
+      <div id="orderItems"><div class="order-item"><div><div class="oi-name">Classic Milk Loaf</div><div class="oi-meta">1 Loaf × 1</div></div>
+      <div class="oi-right"><span class="oi-price">$10.00</span><span class="oi-remove" onclick="removeItem(&#39;1-0&#39;)">✕</span></div></div></div>
 
       <!-- DELIVERY TOGGLE -->
-      <div class="delivery-section" id="deliverySection" style="display:none">
+      <div class="delivery-section" id="deliverySection" style="display: block;">
         <hr class="order-divider">
         <div class="delivery-toggle">
-          <button class="delivery-opt active" id="optPickup" onclick="setMethod(&#39;pickup&#39;)">Pickup</button>
-          <button class="delivery-opt" id="optDelivery" onclick="setMethod(&#39;delivery&#39;)">Delivery</button>
+          <button class="delivery-opt" id="optPickup" onclick="setMethod(&#39;pickup&#39;)">Pickup</button>
+          <button class="delivery-opt active" id="optDelivery" onclick="setMethod(&#39;delivery&#39;)">Delivery</button>
         </div>
-        <div class="delivery-address-wrap" id="addressWrap">
+        <div class="delivery-address-wrap show" id="addressWrap">
           <div class="address-input-wrap" style="position:relative">
-            <input type="text" id="deliveryAddress" placeholder="Start typing your address..." autocomplete="off" class="pac-target-input">
+            <input type="text" id="deliveryAddress" placeholder="Start typing your address..." autocomplete="off">
             <div id="deliveryResult"></div>
           </div>
         </div>
       </div>
 
-      <div id="orderSummary" style="display:none">
+      <div id="orderSummary" style="display: block;">
         <hr class="order-divider">
-        <div class="summary-row"><span>Subtotal</span><span id="subtotalPrice">$0.00</span></div>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotalPrice">$10.00</span></div>
         <div class="summary-row delivery" id="deliveryRow" style="display:none">
           <span id="deliveryLabel">Delivery fee</span>
           <span id="deliveryFee">$0.00</span>
@@ -243,7 +246,7 @@ footer a{color:var(--gold);text-decoration:none}
         </div>
         <div class="summary-total">
           <span>Total</span>
-          <span class="summary-total-price" id="totalPrice">$0.00</span>
+          <span class="summary-total-price" id="totalPrice">$10.00</span>
         </div>
       </div>
 
@@ -264,7 +267,7 @@ footer a{color:var(--gold);text-decoration:none}
           </div>
         </div>
         <div class="form-row"><label>Special Requests</label><textarea id="fNotes" placeholder="Allergies, gifting, flavor notes..."></textarea></div>
-        <button class="submit-btn" id="submitBtn" disabled="" onclick="submitOrder()">Place Order</button>
+        <button class="submit-btn" id="submitBtn" onclick="submitOrder()" disabled="">Place Order</button>
       </div>
     </div>
   </div>
@@ -403,28 +406,39 @@ function setMethod(method) {
   renderCart();
 }
 
-let autocomplete;
-
-function initAutocomplete() {
+async function initAutocomplete() {
+  const { PlaceAutocompleteElement } = await google.maps.importLibrary("places");
   const input = document.getElementById('deliveryAddress');
-  autocomplete = new google.maps.places.Autocomplete(input, {
+  
+  const autocomplete = new PlaceAutocompleteElement({
     componentRestrictions: { country: 'us' },
-    fields: ['formatted_address', 'geometry'],
     types: ['address']
   });
-  autocomplete.addListener('place_changed', onPlaceSelected);
+  
+  // Style the new element to match our design
+  autocomplete.style.width = '100%';
+  input.parentNode.insertBefore(autocomplete, input);
+  input.style.display = 'none';
+  
+  autocomplete.addEventListener('gmp-placeselect', async (event) => {
+    const place = event.placePrediction.toPlace();
+    await place.fetchFields({ fields: ['formattedAddress', 'location'] });
+    
+    const destLat = place.location.lat();
+    const destLng = place.location.lng();
+    const destAddr = place.formattedAddress;
+    
+    // Update hidden input for form submission
+    input.value = destAddr;
+    
+    calcDelivery(destLat, destLng, destAddr);
+  });
 }
 
-function onPlaceSelected() {
-  const place = autocomplete.getPlace();
-  if (!place.geometry) return;
+function calcDelivery(destLat, destLng, destAddr) {
 
   const resultEl = document.getElementById('deliveryResult');
   resultEl.innerHTML = '<div class="delivery-result">Calculating distance...</div>';
-
-  const destLat = place.geometry.location.lat();
-  const destLng = place.geometry.location.lng();
-  const destAddr = place.formatted_address;
 
   // Calculate distance using Haversine formula (no API call needed)
   const storeLat = 33.6846;
@@ -599,4 +613,4 @@ renderMenu();
 </script>
 
 
-<div class="pac-container pac-logo" style="display: none;"></div></body></html>
+</body></html>
