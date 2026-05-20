@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///C:/Users/rayyu/Downloads/order.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HooRay Bakery — Order</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./order_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#1a1410;--cream:#f8f4ee;--warm:#f0e8da;--gold:#b5843a;
-  --gold-light:#d4a85a;--muted:#7a6e62;--white:#fff;--rose:#c96b50;
-  --shadow:rgba(26,20,16,0.07);
+--ink:#1a1410;--cream:#f8f4ee;--warm:#f0e8da;--gold:#b5843a;
+--gold-light:#d4a85a;--muted:#7a6e62;--white:#fff;--rose:#c96b50;
+--shadow:rgba(26,20,16,0.07);
 }
 body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh}
 
@@ -105,16 +105,30 @@ nav{background:var(--white);border-bottom:1px solid rgba(181,132,58,.15);padding
 .delivery-opt.active{background:var(--ink);color:white}
 .delivery-address-wrap{display:none}
 .delivery-address-wrap.show{display:block}
-.address-input-row{display:flex;gap:8px}
-.address-input-row input{flex:1;border:1.5px solid #e8ddd6;padding:9px 12px;font-family:'Jost',sans-serif;font-size:.84rem;background:var(--cream);color:var(--ink);outline:none;transition:border-color .2s;border-radius:0}
-.address-input-row input:focus{border-color:var(--gold);background:white}
-.check-btn{background:var(--ink);color:white;border:none;padding:9px 16px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;transition:background .2s}
-.check-btn:hover{background:var(--gold)}
-.pac-container{border-radius:0;border:1px solid rgba(181,132,58,.3);box-shadow:0 4px 16px rgba(26,20,16,.1);font-family:'Jost',sans-serif}
-.pac-item{padding:8px 14px;font-size:.82rem;cursor:pointer;border-top:1px solid #f5ede4}
-.pac-item:hover{background:var(--warm)}
-.pac-item-query{font-size:.85rem;color:var(--ink)}
-.pac-matched{color:var(--gold);font-weight:500}
+
+/* CUSTOM ADDRESS INPUT (replaces gmp-place-autocomplete) */
+.address-input-outer{position:relative}
+.address-input-outer input{
+  width:100%;border:1.5px solid #e8ddd6;padding:10px 13px;
+  font-family:'Jost',sans-serif;font-size:.84rem;background:var(--cream);
+  color:var(--ink);outline:none;transition:border-color .2s;border-radius:0;
+}
+.address-input-outer input:focus{border-color:var(--gold);background:white}
+.addr-suggestions{
+  position:absolute;top:100%;left:0;right:0;background:white;
+  border:1px solid rgba(181,132,58,.3);box-shadow:0 4px 16px rgba(26,20,16,.1);
+  z-index:200;max-height:200px;overflow-y:auto;display:none;
+}
+.addr-suggestions.show{display:block}
+.addr-suggestion-item{
+  padding:9px 13px;font-size:.82rem;cursor:pointer;
+  border-bottom:1px solid #f5ede4;color:var(--ink);
+  transition:background .15s;
+}
+.addr-suggestion-item:hover{background:var(--warm)}
+.addr-suggestion-main{font-weight:500}
+.addr-suggestion-sec{font-size:.74rem;color:var(--muted);margin-top:1px}
+
 .delivery-result{margin-top:10px;font-size:.8rem;padding:10px 12px;border-left:3px solid var(--gold);background:rgba(181,132,58,.06)}
 .delivery-result.error{border-left-color:var(--rose);background:rgba(201,107,80,.06);color:var(--rose)}
 
@@ -145,10 +159,6 @@ nav{background:var(--white);border-bottom:1px solid rgba(181,132,58,.15);padding
 footer{text-align:center;padding:28px;font-size:.77rem;color:var(--muted);border-top:1px solid rgba(181,132,58,.15)}
 footer a{color:var(--gold);text-decoration:none}
 </style>
-<script>
-(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-({key: "AIzaSyDLjUO-Nk_LPzhQ0hoJHbbkSvxx2vZjKJQ", v: "weekly"});
-</script>
 </head>
 <body>
 
@@ -156,20 +166,20 @@ footer a{color:var(--gold);text-decoration:none}
   <div class="closed-icon">🍞</div>
   <h2>We're Not Taking Orders Right Now</h2>
   <p>We're currently closed. Please check back soon or follow us on Instagram for updates!<br><br>
-  <a href="https://www.instagram.com/hooraysbakery/" target="_blank">@hooraysbakery</a> · <a href="mailto:hooraybakery@gmail.com">hooraybakery@gmail.com</a></p>
+  <a href="https://www.instagram.com/hooraysbakery/" target="_blank">@hooraysbakery</a> &middot; <a href="mailto:hooraybakery@gmail.com">hooraybakery@gmail.com</a></p>
 </div>
 
 <nav>
-  <a class="nav-logo" href="file:///C:/Users/rayyu/Downloads/index.html"><em>Hoo</em>Ray Bakery</a>
-  <a class="nav-back" href="file:///C:/Users/rayyu/Downloads/index.html">← Back to Home</a>
+  <a class="nav-logo" href="index.html"><em>Hoo</em>Ray Bakery</a>
+  <a class="nav-back" href="index.html">&larr; Back to Home</a>
 </nav>
 
 <div class="notice-banner" id="noticeBanner"></div>
 
 <div class="page-hero">
-  <div class="page-hero-tag">Pickup · Irvine, CA</div>
+  <div class="page-hero-tag">Pickup &middot; Irvine, CA</div>
   <h1>Place Your <em>Order</em></h1>
-  <p>All items are made fresh to order. Orders placed today will be ready on the next available bake day — we'll confirm via text.</p>
+  <p>All items are made fresh to order. Orders placed today will be ready on the next available bake day &mdash; we’ll confirm via text.</p>
 </div>
 
 <div class="layout">
@@ -177,66 +187,40 @@ footer a{color:var(--gold);text-decoration:none}
     <div class="section-label">Our Menu</div>
     <div class="section-sub">Select your items and add them to your order</div>
     <div class="tabs">
-      <button class="tab active" onclick="filterMenu(&#39;all&#39;,this)">All</button>
-      <button class="tab" onclick="filterMenu(&#39;bread&#39;,this)">Breads</button>
-      <button class="tab" onclick="filterMenu(&#39;cookie&#39;,this)">Cookies</button>
-      <button class="tab" onclick="filterMenu(&#39;pastry&#39;,this)">Pastries</button>
+      <button class="tab active" onclick="filterMenu('all',this)">All</button>
+      <button class="tab" onclick="filterMenu('bread',this)">Breads</button>
+      <button class="tab" onclick="filterMenu('cookie',this)">Cookies</button>
+      <button class="tab" onclick="filterMenu('pastry',this)">Pastries</button>
     </div>
-    <div class="menu-grid" id="menuGrid"><div class="product-card"><div class="product-emoji">🍞</div>
-      <div class="product-body"><div class="product-name">Classic Milk Loaf</div><div class="product-desc">15oz · Soft, pillowy Japanese-style milk bread</div><div class="slice-option">
-          <input type="checkbox" id="slice-1" onchange="toggleSlice(1,this.checked)">
-          <label class="slice-label" for="slice-1">Sliced
-            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
-          </label>
-        </div></div>
-      <div class="product-right"><div class="product-price">$10.00</div><div class="qty-row"><button class="qty-btn" onclick="changeQty(&#39;1-0&#39;,-1)">−</button><span class="qty-num">1</span><button class="qty-btn" onclick="changeQty(&#39;1-0&#39;,1)">+</button></div></div></div><div class="product-card"><div class="product-emoji">🍵</div>
-      <div class="product-body"><div class="product-name">Matcha Milk Loaf</div><div class="product-desc">15oz · Earthy matcha swirled into our signature milk bread</div><div class="slice-option">
-          <input type="checkbox" id="slice-2" onchange="toggleSlice(2,this.checked)">
-          <label class="slice-label" for="slice-2">Sliced
-            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
-          </label>
-        </div></div>
-      <div class="product-right"><div class="product-price">$12.00</div><button class="add-btn" onclick="addItem(2)">Add</button></div></div><div class="product-card"><div class="product-emoji">🫖</div>
-      <div class="product-body"><div class="product-name">Earl Grey Tea Milk Loaf</div><div class="product-desc">15oz · Fragrant bergamot tea baked right in</div><div class="slice-option">
-          <input type="checkbox" id="slice-3" onchange="toggleSlice(3,this.checked)">
-          <label class="slice-label" for="slice-3">Sliced
-            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
-          </label>
-        </div></div>
-      <div class="product-right"><div class="product-price">$12.00</div><button class="add-btn" onclick="addItem(3)">Add</button></div></div><div class="product-card"><div class="product-emoji">🍪</div>
-      <div class="product-body"><div class="product-name">Butter Cookies</div><div class="product-desc">Classic melt-in-your-mouth butter cookies</div></div>
-      <div class="product-right"><div class="product-price">$10.00</div><button class="add-btn" onclick="addItem(4)">Add</button></div></div><div class="product-card"><div class="product-emoji">⭐</div>
-      <div class="product-body"><div class="product-name">Jenny Cookies</div><div class="product-desc">Our signature piped butter cookies</div><div class="size-picker"><button class="size-opt selected" onclick="selectVariant(5,0)">4 pcs — $6</button><button class="size-opt " onclick="selectVariant(5,1)">8 pcs — $10</button></div></div>
-      <div class="product-right"><div class="product-price">$6.00</div><button class="add-btn" onclick="addItem(5)">Add</button></div></div><div class="product-card"><div class="product-emoji">🟤</div>
-      <div class="product-body"><div class="product-name">Canelé</div><div class="product-desc">French custard pastry — crispy outside, custardy inside</div><div class="size-picker"><button class="size-opt selected" onclick="selectVariant(6,0)">Small 4pc — $8</button><button class="size-opt " onclick="selectVariant(6,1)">Large 4pc — $15</button></div></div>
-      <div class="product-right"><div class="product-price">$8.00</div><button class="add-btn" onclick="addItem(6)">Add</button></div></div></div>
+    <div class="menu-grid" id="menuGrid"></div>
   </div>
 
   <div class="sidebar" id="sidebar">
     <div class="order-card">
       <div class="order-card-title">Your Order <span class="clear-all" onclick="clearCart()">Clear all</span></div>
 
-      <div id="orderItems"><div class="order-item"><div><div class="oi-name">Classic Milk Loaf</div><div class="oi-meta">1 Loaf × 1</div></div>
-      <div class="oi-right"><span class="oi-price">$10.00</span><span class="oi-remove" onclick="removeItem(&#39;1-0&#39;)">✕</span></div></div></div>
+      <div id="orderItems">
+        <div class="empty-state"><span class="ei">🍞</span>Pick something from the menu!</div>
+      </div>
 
-      <!-- DELIVERY TOGGLE -->
-      <div class="delivery-section" id="deliverySection" style="display: block;">
+      <div class="delivery-section" id="deliverySection" style="display:none">
         <hr class="order-divider">
         <div class="delivery-toggle">
-          <button class="delivery-opt" id="optPickup" onclick="setMethod(&#39;pickup&#39;)">Pickup</button>
-          <button class="delivery-opt active" id="optDelivery" onclick="setMethod(&#39;delivery&#39;)">Delivery</button>
+          <button class="delivery-opt active" id="optPickup" onclick="setMethod('pickup')">Pickup</button>
+          <button class="delivery-opt" id="optDelivery" onclick="setMethod('delivery')">Delivery</button>
         </div>
-        <div class="delivery-address-wrap show" id="addressWrap">
-          <div class="address-input-wrap" style="position:relative">
-            <input type="text" id="deliveryAddress" placeholder="Start typing your address..." autocomplete="off">
-            <div id="deliveryResult"></div>
+        <div class="delivery-address-wrap" id="addressWrap">
+          <div class="address-input-outer">
+            <input type="text" id="deliveryAddress" placeholder="Start typing your address..." autocomplete="off" oninput="onAddrInput(this.value)" onblur="hideAddrSuggestionsDelayed()">
+            <div class="addr-suggestions" id="addrSuggestions"></div>
           </div>
+          <div id="deliveryResult"></div>
         </div>
       </div>
 
-      <div id="orderSummary" style="display: block;">
+      <div id="orderSummary" style="display:none">
         <hr class="order-divider">
-        <div class="summary-row"><span>Subtotal</span><span id="subtotalPrice">$10.00</span></div>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotalPrice">$0.00</span></div>
         <div class="summary-row delivery" id="deliveryRow" style="display:none">
           <span id="deliveryLabel">Delivery fee</span>
           <span id="deliveryFee">$0.00</span>
@@ -246,7 +230,7 @@ footer a{color:var(--gold);text-decoration:none}
         </div>
         <div class="summary-total">
           <span>Total</span>
-          <span class="summary-total-price" id="totalPrice">$10.00</span>
+          <span class="summary-total-price" id="totalPrice">$0.00</span>
         </div>
       </div>
 
@@ -256,7 +240,7 @@ footer a{color:var(--gold);text-decoration:none}
         <div class="form-row"><label>Phone *</label><input type="tel" id="fPhone" placeholder="(949) 555-1234"></div>
         <div class="form-divider" style="margin-top:16px">Pickup Details</div>
         <div class="form-grid">
-          <div class="form-row"><label>Date *</label><input type="date" id="fDate" min="2026-05-22"></div>
+          <div class="form-row"><label>Date *</label><input type="date" id="fDate"></div>
           <div class="form-row"><label>Time</label>
             <select id="fTime">
               <option value="">Any</option>
@@ -267,29 +251,34 @@ footer a{color:var(--gold);text-decoration:none}
           </div>
         </div>
         <div class="form-row"><label>Special Requests</label><textarea id="fNotes" placeholder="Allergies, gifting, flavor notes..."></textarea></div>
-        <button class="submit-btn" id="submitBtn" onclick="submitOrder()" disabled="">Place Order</button>
+        <button class="submit-btn" id="submitBtn" onclick="submitOrder()" disabled>Place Order</button>
       </div>
     </div>
   </div>
 </div>
 
 <footer>
-  <a href="file:///C:/Users/rayyu/Downloads/index.html">← Back to HooRay Bakery</a> &nbsp;·&nbsp;
-  <a href="tel:9494495962">(949) 449-5962</a> &nbsp;·&nbsp;
+  <a href="index.html">&larr; Back to HooRay Bakery</a> &nbsp;&middot;&nbsp;
+  <a href="tel:9494495962">(949) 449-5962</a> &nbsp;&middot;&nbsp;
   <a href="mailto:hooraybakery@gmail.com">hooraybakery@gmail.com</a>
 </footer>
-<div class="toast" id="toast">🎉 Order placed! We'll confirm via text soon.</div>
+<div class="toast" id="toast">🎉 Order placed! We’ll confirm via text soon.</div>
 
 <script>
 // ══════════════════════════════
-// CONFIG — loaded from admin settings
+// CONFIG
 // ══════════════════════════════
-const GOOGLE_MAPS_KEY = ['AIzaSyDLjU','O-Nk_LPzhQ','0hoJHbbkSvxx2vZjKJQ'].join('');
+const GOOGLE_MAPS_KEY = 'AIzaSyDLjUO-Nk_LPzhQ0hoJHbbkSvxx2vZjKJQ';
 const STORE_ADDRESS = '7725 Gateway, Irvine, CA 92618';
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJiOEEFuxFoDjAV1YmE8qt4FyWHojuSLKHyXGBZ1-hp4AwV_3g94JT7k6Op4bT3FyM/exec';
 const MIN_HOURS_AHEAD = 48;
+// Store lat/lng for Haversine
+const STORE_LAT = 33.6846;
+const STORE_LNG = -117.7963;
 
-// Load admin settings from localStorage
+// ══════════════════════════════
+// SETTINGS (from admin localStorage)
+// ══════════════════════════════
 function getSettings() {
   const defaults = {
     storeOpen: true,
@@ -298,44 +287,54 @@ function getSettings() {
     ratePerMile: 1.00,
     maxMiles: 20,
     freeDeliveryMin: 20,
-    bakeDay1: 3, // Wednesday
-    bakeDay2: 6, // Saturday
+    bakeDays: [3, 6],
+    minHours: 48,
   };
   try {
     const saved = JSON.parse(localStorage.getItem('hooray_settings') || '{}');
     return { ...defaults, ...saved };
   } catch { return defaults; }
 }
-
 const S = getSettings();
 
-// Apply settings
+// Apply closed overlay
 if (!S.storeOpen) document.getElementById('closedOverlay').classList.add('active');
+
+// Apply notice banner
 if (S.noticeText) {
   const b = document.getElementById('noticeBanner');
   b.textContent = S.noticeText;
   b.classList.add('active');
 }
 
-// Min date
+// Min date (48h ahead)
 const minDate = new Date();
-minDate.setHours(minDate.getHours() + MIN_HOURS_AHEAD);
+minDate.setHours(minDate.getHours() + (S.minHours || MIN_HOURS_AHEAD));
 document.getElementById('fDate').min = minDate.toISOString().split('T')[0];
 
+// ══════════════════════════════
+// MENU DATA
+// ══════════════════════════════
 const MENU = [
-  { id:1, cat:'bread', emoji:'🍞', name:'Classic Milk Loaf', desc:'15oz · Soft, pillowy Japanese-style milk bread', canSlice:true, variants:[{label:'1 Loaf',price:10}] },
-  { id:2, cat:'bread', emoji:'🍵', name:'Matcha Milk Loaf', desc:'15oz · Earthy matcha swirled into our signature milk bread', canSlice:true, variants:[{label:'1 Loaf',price:12}] },
-  { id:3, cat:'bread', emoji:'🫖', name:'Earl Grey Tea Milk Loaf', desc:'15oz · Fragrant bergamot tea baked right in', canSlice:true, variants:[{label:'1 Loaf',price:12}] },
-  { id:4, cat:'cookie', emoji:'🍪', name:'Butter Cookies', desc:'Classic melt-in-your-mouth butter cookies', canSlice:false, variants:[{label:'12 pcs',price:10}] },
-  { id:5, cat:'cookie', emoji:'⭐', name:'Jenny Cookies', desc:'Our signature piped butter cookies', canSlice:false, variants:[{label:'4 pcs',price:6},{label:'8 pcs',price:10}] },
-  { id:6, cat:'pastry', emoji:'🟤', name:'Canelé', desc:'French custard pastry — crispy outside, custardy inside', canSlice:false, variants:[{label:'Small 4pc',price:8},{label:'Large 4pc',price:15}] },
+  { id:1, cat:'bread', emoji:'\ud83c\udf5e', name:'Classic Milk Loaf', desc:'15oz \u00b7 Soft, pillowy Japanese-style milk bread', canSlice:true, variants:[{label:'1 Loaf',price:10}] },
+  { id:2, cat:'bread', emoji:'\ud83c\udf75', name:'Matcha Milk Loaf', desc:'15oz \u00b7 Earthy matcha swirled into our signature milk bread', canSlice:true, variants:[{label:'1 Loaf',price:12}] },
+  { id:3, cat:'bread', emoji:'\ud83fad6', name:'Earl Grey Tea Milk Loaf', desc:'15oz \u00b7 Fragrant bergamot tea baked right in', canSlice:true, variants:[{label:'1 Loaf',price:12}] },
+  { id:4, cat:'cookie', emoji:'\ud83c\udf6a', name:'Butter Cookies', desc:'Classic melt-in-your-mouth butter cookies · 12 pcs', canSlice:false, variants:[{label:'12 pcs',price:10}] },
+  { id:5, cat:'cookie', emoji:'\u2b50', name:'Jenny Cookies', desc:'Our signature piped butter cookies', canSlice:false, variants:[{label:'4 pcs',price:6},{label:'8 pcs',price:10}] },
+  { id:6, cat:'pastry', emoji:'\ud83d\udfe4', name:'Canel\u00e9', desc:'French custard pastry \u2014 crispy outside, custardy inside', canSlice:false, variants:[{label:'Small 4pc',price:8},{label:'Large 4pc',price:15}] },
 ];
 
 let cart = {}, selVar = {}, sliceChoice = {};
-let deliveryMethod = 'pickup', deliveryFeeAmount = 0, deliveryChecked = false;
+let deliveryMethod = 'pickup';
+let deliveryFeeAmount = 0;
+let deliveryChecked = false;
+let deliveryLat = null, deliveryLng = null, deliveryAddrText = '';
 let activeFilter = 'all';
 MENU.forEach(m => { selVar[m.id] = 0; sliceChoice[m.id] = false; });
 
+// ══════════════════════════════
+// MENU RENDER
+// ══════════════════════════════
 function filterMenu(cat, btn) {
   activeFilter = cat;
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -350,130 +349,181 @@ function renderMenu() {
   items.forEach(item => {
     const vi = selVar[item.id] ?? 0;
     const variant = item.variants[vi];
-    const key = `${item.id}-${vi}`;
+    const key = item.id + '-' + vi;
     const qty = cart[key] || 0;
     const sizePicker = item.variants.length > 1
-      ? `<div class="size-picker">${item.variants.map((v,i)=>`<button class="size-opt ${i===vi?'selected':''}" onclick="selectVariant(${item.id},${i})">${v.label} — $${v.price}</button>`).join('')}</div>`
+      ? '<div class="size-picker">' + item.variants.map((v,i) => '<button class="size-opt ' + (i===vi?'selected':'') + '" onclick="selectVariant(' + item.id + ',' + i + ')">' + v.label + ' \u2014 $' + v.price + '</button>').join('') + '</div>'
       : '';
     const slicePicker = item.canSlice
-      ? `<div class="slice-option">
-          <input type="checkbox" id="slice-${item.id}" ${sliceChoice[item.id]?'checked':''} onchange="toggleSlice(${item.id},this.checked)">
-          <label class="slice-label" for="slice-${item.id}">Sliced
-            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
-          </label>
-        </div>` : '';
+      ? '<div class="slice-option"><input type="checkbox" id="slice-' + item.id + '" ' + (sliceChoice[item.id]?'checked':'') + ' onchange="toggleSlice(' + item.id + ',this.checked)"><label class="slice-label" for="slice-' + item.id + '">Sliced<span class="slice-note">\u26a0\ufe0f Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning \u2014 not fresh out of the oven.</span></label></div>'
+      : '';
     const ctrl = qty === 0
-      ? `<button class="add-btn" onclick="addItem(${item.id})">Add</button>`
-      : `<div class="qty-row"><button class="qty-btn" onclick="changeQty('${key}',-1)">−</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeQty('${key}',1)">+</button></div>`;
+      ? '<button class="add-btn" onclick="addItem(' + item.id + ')">Add</button>'
+      : '<div class="qty-row"><button class="qty-btn" onclick="changeQty(\'' + key + '\',-1)">&minus;</button><span class="qty-num">' + qty + '</span><button class="qty-btn" onclick="changeQty(\'' + key + '\',1)">+</button></div>';
     const card = document.createElement('div');
     card.className = 'product-card';
-    card.innerHTML = `<div class="product-emoji">${item.emoji}</div>
-      <div class="product-body"><div class="product-name">${item.name}</div><div class="product-desc">${item.desc}</div>${sizePicker}${slicePicker}</div>
-      <div class="product-right"><div class="product-price">$${variant.price.toFixed(2)}</div>${ctrl}</div>`;
+    card.innerHTML = '<div class="product-emoji">' + item.emoji + '</div><div class="product-body"><div class="product-name">' + item.name + '</div><div class="product-desc">' + item.desc + '</div>' + sizePicker + slicePicker + '</div><div class="product-right"><div class="product-price">$' + variant.price.toFixed(2) + '</div>' + ctrl + '</div>';
     grid.appendChild(card);
   });
 }
 
 function toggleSlice(id, val) { sliceChoice[id] = val; renderCart(); }
 function selectVariant(id, idx) { selVar[id] = idx; renderMenu(); }
-function addItem(id) { const key=`${id}-${selVar[id]??0}`; cart[key]=1; update(); }
-function changeQty(key,d) { cart[key]=(cart[key]||0)+d; if(cart[key]<=0)delete cart[key]; update(); }
+function addItem(id) { const key = id + '-' + (selVar[id]??0); cart[key] = 1; update(); }
+function changeQty(key, d) { cart[key] = (cart[key]||0) + d; if(cart[key]<=0) delete cart[key]; update(); }
 function removeItem(key) { delete cart[key]; update(); }
-function clearCart() { cart={}; deliveryChecked=false; deliveryFeeAmount=0; update(); }
+function clearCart() { cart = {}; deliveryChecked = false; deliveryFeeAmount = 0; deliveryLat = null; deliveryLng = null; deliveryAddrText = ''; update(); }
 
 function getSubtotal() {
-  return Object.keys(cart).reduce((s,key) => {
-    const [idStr,viStr]=key.split('-');
-    const item=MENU.find(m=>m.id==idStr);
-    return s+item.variants[+viStr].price*cart[key];
-  },0);
+  return Object.keys(cart).reduce((s, key) => {
+    const [idStr, viStr] = key.split('-');
+    const item = MENU.find(m => m.id == idStr);
+    return s + item.variants[+viStr].price * cart[key];
+  }, 0);
 }
 
-function update() {
-  renderMenu();
-  renderCart();
-  document.getElementById('cartBadge') && (document.getElementById('cartBadge').textContent = Object.values(cart).reduce((a,b)=>a+b,0));
-}
+function update() { renderMenu(); renderCart(); }
 
+// ══════════════════════════════
+// DELIVERY METHOD TOGGLE
+// ══════════════════════════════
 function setMethod(method) {
   deliveryMethod = method;
   deliveryChecked = false;
   deliveryFeeAmount = 0;
-  document.getElementById('optPickup').classList.toggle('active', method==='pickup');
-  document.getElementById('optDelivery').classList.toggle('active', method==='delivery');
-  document.getElementById('addressWrap').classList.toggle('show', method==='delivery');
+  deliveryLat = null;
+  deliveryLng = null;
+  deliveryAddrText = '';
+  document.getElementById('optPickup').classList.toggle('active', method === 'pickup');
+  document.getElementById('optDelivery').classList.toggle('active', method === 'delivery');
+  document.getElementById('addressWrap').classList.toggle('show', method === 'delivery');
   document.getElementById('deliveryResult').innerHTML = '';
+  document.getElementById('deliveryAddress').value = '';
+  document.getElementById('addrSuggestions').classList.remove('show');
   renderCart();
 }
 
-async function initAutocomplete() {
-  const { PlaceAutocompleteElement } = await google.maps.importLibrary("places");
-  const input = document.getElementById('deliveryAddress');
-  
-  const autocomplete = new PlaceAutocompleteElement({
+// ══════════════════════════════
+// ADDRESS AUTOCOMPLETE (Places API - AutocompleteService)
+// ══════════════════════════════
+let autocompleteService = null;
+let sessionToken = null;
+let suggestTimeout = null;
+let pendingSuggestions = [];
+
+async function initAutocompleteService() {
+  if (autocompleteService) return;
+  try {
+    const { AutocompleteService, AutocompleteSessionToken } = await google.maps.importLibrary('places');
+    autocompleteService = new AutocompleteService();
+    sessionToken = new AutocompleteSessionToken();
+  } catch(e) {
+    console.warn('Places API load error:', e);
+  }
+}
+
+function onAddrInput(val) {
+  clearTimeout(suggestTimeout);
+  if (!val || val.length < 3) {
+    document.getElementById('addrSuggestions').classList.remove('show');
+    return;
+  }
+  suggestTimeout = setTimeout(() => fetchSuggestions(val), 300);
+}
+
+async function fetchSuggestions(input) {
+  await initAutocompleteService();
+  if (!autocompleteService) return;
+  autocompleteService.getPlacePredictions({
+    input,
+    sessionToken,
     componentRestrictions: { country: 'us' },
-    types: ['address']
-  });
-  
-  // Style the new element to match our design
-  autocomplete.style.width = '100%';
-  input.parentNode.insertBefore(autocomplete, input);
-  input.style.display = 'none';
-  
-  autocomplete.addEventListener('gmp-placeselect', async (event) => {
-    const place = event.placePrediction.toPlace();
-    await place.fetchFields({ fields: ['formattedAddress', 'location'] });
-    
-    const destLat = place.location.lat();
-    const destLng = place.location.lng();
-    const destAddr = place.formattedAddress;
-    
-    // Update hidden input for form submission
-    input.value = destAddr;
-    
-    calcDelivery(destLat, destLng, destAddr);
+    types: ['address'],
+  }, (predictions, status) => {
+    const box = document.getElementById('addrSuggestions');
+    if (!predictions || !predictions.length) { box.classList.remove('show'); return; }
+    pendingSuggestions = predictions;
+    box.innerHTML = predictions.map((p, i) => {
+      const main = p.structured_formatting.main_text || '';
+      const sec = p.structured_formatting.secondary_text || '';
+      return '<div class="addr-suggestion-item" data-idx="' + i + '" onmousedown="selectSuggestion(' + i + ')"><div class="addr-suggestion-main">' + main + '</div><div class="addr-suggestion-sec">' + sec + '</div></div>';
+    }).join('');
+    box.classList.add('show');
   });
 }
 
-function calcDelivery(destLat, destLng, destAddr) {
+async function selectSuggestion(idx) {
+  const pred = pendingSuggestions[idx];
+  if (!pred) return;
+  document.getElementById('addrSuggestions').classList.remove('show');
+  document.getElementById('deliveryAddress').value = pred.description;
+  deliveryAddrText = pred.description;
 
+  // Get lat/lng via Geocoder
+  try {
+    const { Geocoder } = await google.maps.importLibrary('geocoding');
+    const geocoder = new Geocoder();
+    geocoder.geocode({ address: pred.description, region: 'us' }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const loc = results[0].geometry.location;
+        calcDelivery(loc.lat(), loc.lng(), pred.description);
+      } else {
+        document.getElementById('deliveryResult').innerHTML = '<div class="delivery-result error">Could not calculate distance. Please try again.</div>';
+      }
+    });
+    // Refresh session token after selection
+    const { AutocompleteSessionToken } = await google.maps.importLibrary('places');
+    sessionToken = new AutocompleteSessionToken();
+  } catch(e) {
+    document.getElementById('deliveryResult').innerHTML = '<div class="delivery-result error">Error calculating distance: ' + e.message + '</div>';
+  }
+}
+
+function hideAddrSuggestionsDelayed() {
+  setTimeout(() => {
+    document.getElementById('addrSuggestions').classList.remove('show');
+  }, 200);
+}
+
+// ══════════════════════════════
+// DELIVERY DISTANCE + FEE
+// ══════════════════════════════
+function calcDelivery(destLat, destLng, destAddr) {
   const resultEl = document.getElementById('deliveryResult');
   resultEl.innerHTML = '<div class="delivery-result">Calculating distance...</div>';
 
-  // Calculate distance using Haversine formula (no API call needed)
-  const storeLat = 33.6846;
-  const storeLng = -117.7963;
   const R = 3958.8;
-  const dLat = (destLat - storeLat) * Math.PI / 180;
-  const dLon = (destLng - storeLng) * Math.PI / 180;
+  const dLat = (destLat - STORE_LAT) * Math.PI / 180;
+  const dLon = (destLng - STORE_LNG) * Math.PI / 180;
   const a = Math.sin(dLat/2)*Math.sin(dLat/2) +
-    Math.cos(storeLat*Math.PI/180)*Math.cos(destLat*Math.PI/180)*
-    Math.sin(dLon/2)*Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  const miles = R * c;
+            Math.cos(STORE_LAT*Math.PI/180)*Math.cos(destLat*Math.PI/180)*
+            Math.sin(dLon/2)*Math.sin(dLon/2);
+  const miles = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   const milesRounded = Math.round(miles * 10) / 10;
-
   const subtotal = getSubtotal();
 
   if (miles > S.maxMiles) {
     deliveryChecked = false;
     deliveryFeeAmount = 0;
-    resultEl.innerHTML = `<div class="delivery-result error">Sorry, ${milesRounded} miles is outside our delivery range (max ${S.maxMiles} miles). Please select pickup instead.</div>`;
+    deliveryLat = null; deliveryLng = null;
+    resultEl.innerHTML = '<div class="delivery-result error">Sorry, ' + milesRounded + ' miles is outside our delivery range (max ' + S.maxMiles + ' miles). Please select pickup instead.</div>';
   } else {
     const rawFee = miles * S.ratePerMile;
     const fee = subtotal >= S.freeDeliveryMin ? 0 : Math.round(rawFee * 100) / 100;
     deliveryFeeAmount = fee;
     deliveryChecked = true;
-    const feeText = fee === 0 ? '🎉 Free (order over $' + S.freeDeliveryMin + ')' : '$' + fee.toFixed(2);
-    resultEl.innerHTML = `<div class="delivery-result">
-      📍 ${destAddr}<br>
-      📏 ${milesRounded} miles away<br>
-      🚗 Delivery fee: <strong>${feeText}</strong>
-    </div>`;
+    deliveryLat = destLat;
+    deliveryLng = destLng;
+    deliveryAddrText = destAddr;
+    const feeText = fee === 0 ? '\ud83c\udf89 Free (order over $' + S.freeDeliveryMin + ')' : '$' + fee.toFixed(2);
+    resultEl.innerHTML = '<div class="delivery-result">\ud83d\udccd ' + destAddr + '<br>\ud83d\udccf ' + milesRounded + ' miles away<br>\ud83d� Delivery fee: <strong>' + feeText + '</strong></div>';
   }
   renderCart();
 }
 
+// ══════════════════════════════
+// CART RENDER
+// ══════════════════════════════
 function renderCart() {
   const container = document.getElementById('orderItems');
   const summary = document.getElementById('orderSummary');
@@ -482,23 +532,22 @@ function renderCart() {
   const keys = Object.keys(cart);
 
   if (!keys.length) {
-    container.innerHTML = `<div class="empty-state"><span class="ei">🍞</span>Pick something from the menu!</div>`;
+    container.innerHTML = '<div class="empty-state"><span class="ei">\ud83c\udf5e</span>Pick something from the menu!</div>';
     summary.style.display = 'none';
     delivSection.style.display = 'none';
     submitBtn.disabled = true;
     return;
   }
 
-  let html='', total=0;
+  let html = '', total = 0;
   keys.forEach(key => {
-    const [idStr,viStr]=key.split('-');
-    const item=MENU.find(m=>m.id==idStr);
-    const v=item.variants[+viStr];
-    const sub=v.price*cart[key];
-    total+=sub;
-    const sliceTag = item.canSlice && sliceChoice[item.id] ? ' · Sliced' : '';
-    html+=`<div class="order-item"><div><div class="oi-name">${item.name}</div><div class="oi-meta">${v.label}${sliceTag} × ${cart[key]}</div></div>
-      <div class="oi-right"><span class="oi-price">$${sub.toFixed(2)}</span><span class="oi-remove" onclick="removeItem('${key}')">✕</span></div></div>`;
+    const [idStr, viStr] = key.split('-');
+    const item = MENU.find(m => m.id == idStr);
+    const v = item.variants[+viStr];
+    const sub = v.price * cart[key];
+    total += sub;
+    const sliceTag = item.canSlice && sliceChoice[item.id] ? ' \u00b7 Sliced' : '';
+    html += '<div class="order-item"><div><div class="oi-name">' + item.name + '</div><div class="oi-meta">' + v.label + sliceTag + ' \u00d7 ' + cart[key] + '</div></div><div class="oi-right"><span class="oi-price">$' + sub.toFixed(2) + '</span><span class="oi-remove" onclick="removeItem(\'' + key + '\')">\u2715</span></div></div>';
   });
   container.innerHTML = html;
   delivSection.style.display = 'block';
@@ -514,7 +563,16 @@ function renderCart() {
     delivRow.style.display = isFree ? 'none' : 'flex';
     freeRow.style.display = isFree ? 'flex' : 'none';
     if (!isFree) {
-      deliveryFeeAmount = Math.round(deliveryFeeAmount * 100) / 100;
+      // Recalculate fee based on current subtotal
+      const addrEl = document.getElementById('deliveryAddress');
+      if (deliveryLat !== null) {
+        const R = 3958.8;
+        const dLat = (deliveryLat - STORE_LAT) * Math.PI / 180;
+        const dLon = (deliveryLng - STORE_LNG) * Math.PI / 180;
+        const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(STORE_LAT*Math.PI/180)*Math.cos(deliveryLat*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
+        const miles = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        deliveryFeeAmount = Math.round(miles * S.ratePerMile * 100) / 100;
+      }
       document.getElementById('deliveryFee').textContent = '$' + deliveryFeeAmount.toFixed(2);
       grandTotal += deliveryFeeAmount;
     }
@@ -530,6 +588,9 @@ function renderCart() {
   submitBtn.disabled = !canSubmit;
 }
 
+// ══════════════════════════════
+// ORDER SUBMISSION
+// ══════════════════════════════
 function formatDate(dateStr) {
   const d = new Date(dateStr + 'T12:00:00');
   return d.toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -541,50 +602,40 @@ function submitOrder() {
   const date = document.getElementById('fDate').value;
   const time = document.getElementById('fTime').value || 'Flexible';
   const notes = document.getElementById('fNotes').value.trim();
-  if (!name||!phone||!date) { alert('Please fill in your name, phone, and pickup date!'); return; }
+  if (!name || !phone || !date) { alert('Please fill in your name, phone, and pickup date!'); return; }
 
   const subtotal = getSubtotal();
   const isFreeDelivery = deliveryMethod === 'delivery' && subtotal >= S.freeDeliveryMin;
   const fee = deliveryMethod === 'delivery' && !isFreeDelivery ? deliveryFeeAmount : 0;
   const grandTotal = subtotal + fee;
-  const deliveryAddr = document.getElementById('deliveryAddress').value.trim();
+  const addr = deliveryMethod === 'delivery' ? deliveryAddrText : STORE_ADDRESS;
 
   const itemLines = Object.keys(cart).map(key => {
-    const [idStr,viStr]=key.split('-');
-    const item=MENU.find(m=>m.id==idStr);
-    const v=item.variants[+viStr];
-    const sliceTag=item.canSlice&&sliceChoice[item.id]?' (Sliced)':'';
-    return `${item.name}${sliceTag} (${v.label}) x${cart[key]} = $${(v.price*cart[key]).toFixed(2)}`;
+    const [idStr, viStr] = key.split('-');
+    const item = MENU.find(m => m.id == idStr);
+    const v = item.variants[+viStr];
+    const sliceTag = item.canSlice && sliceChoice[item.id] ? ' (Sliced)' : '';
+    return item.name + sliceTag + ' (' + v.label + ') x' + cart[key] + ' = $' + (v.price*cart[key]).toFixed(2);
   });
 
-  const confirmationEmail =
-`Hi ${name},
-
-This is HooRay Bakery confirming your order! 🎉
-
-📦 Order Summary:
-${Object.keys(cart).map(key=>{
-  const [idStr,viStr]=key.split('-');
-  const item=MENU.find(m=>m.id==idStr);
-  const v=item.variants[+viStr];
-  const sliceTag=item.canSlice&&sliceChoice[item.id]?' (Sliced)':'';
-  return `  • ${cart[key]}x ${item.name}${sliceTag} (${v.label})`;
-}).join('\n')}
-
-💰 Subtotal: $${subtotal.toFixed(2)}${deliveryMethod==='delivery'?`\n🚗 Delivery fee: ${isFreeDelivery?'Free':'$'+fee.toFixed(2)}\n💳 Total: $${grandTotal.toFixed(2)}`:''}
-
-📅 ${deliveryMethod==='pickup'?'Pickup':'Delivery'}: ${formatDate(date)} at ${time}
-📍 ${deliveryMethod==='pickup'?'7725 Gateway, Irvine, CA 92618':deliveryAddr}
-
-Thank you so much! We'll text you to confirm. 🍞
-
-With love,
-HooRay Bakery 🧡`;
+  const confirmationEmail = 'Hi ' + name + ',\n\nThis is HooRay Bakery confirming your order! \ud83c�\n\n\ud83d\udce6 Order Summary:\n' +
+    Object.keys(cart).map(key => {
+      const [idStr,viStr]=key.split('-');
+      const item=MENU.find(m=>m.id==idStr);
+      const v=item.variants[+viStr];
+      const sliceTag=item.canSlice&&sliceChoice[item.id]?' (Sliced)':'';
+      return ' \u2022 ' + cart[key] + 'x ' + item.name + sliceTag + ' (' + v.label + ')';
+    }).join('\n') +
+    '\n\n\ud83d\udcb0 Subtotal: $' + subtotal.toFixed(2) +
+    (deliveryMethod==='delivery' ? '\n\ud83d� Delivery fee: ' + (isFreeDelivery?'Free':'$'+fee.toFixed(2)) + '\n\ud83d\udcb3 Total: $' + grandTotal.toFixed(2) : '') +
+    '\n\n\ud83d\udcc5 ' + (deliveryMethod==='pickup'?'Pickup':'Delivery') + ': ' + formatDate(date) + ' at ' + time +
+    '\n\ud83d\udccd ' + addr +
+    '\n\nThank you so much! We\'ll text you to confirm. \ud83c�\n\nWith love,\nHooRay Bakery \ud83e\uddf1';
 
   const params = new URLSearchParams({
     name, phone, date, time,
     method: deliveryMethod,
-    address: deliveryMethod==='delivery' ? deliveryAddr : '7725 Gateway, Irvine, CA 92618',
+    address: addr,
     items: itemLines.join(' | '),
     subtotal: '$'+subtotal.toFixed(2),
     deliveryFee: deliveryMethod==='delivery' ? (isFreeDelivery?'Free':'$'+fee.toFixed(2)) : 'N/A',
@@ -594,23 +645,47 @@ HooRay Bakery 🧡`;
 
   fetch(SHEET_URL + '?' + params.toString(), { mode: 'no-cors' });
 
-  cart={};
-  deliveryChecked=false;
-  deliveryFeeAmount=0;
+  // Reset
+  cart = {}; deliveryChecked = false; deliveryFeeAmount = 0;
+  deliveryLat = null; deliveryLng = null; deliveryAddrText = '';
   update();
-  ['fName','fPhone','fDate','fNotes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fTime').value='';
-  document.getElementById('deliveryAddress').value='';
-  document.getElementById('deliveryResult').innerHTML='';
+  ['fName','fPhone','fDate','fNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fTime').value = '';
+  document.getElementById('deliveryAddress').value = '';
+  document.getElementById('deliveryResult').innerHTML = '';
+  document.getElementById('addrSuggestions').classList.remove('show');
   setMethod('pickup');
 
-  const toast=document.getElementById('toast');
+  const toast = document.getElementById('toast');
   toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),3800);
+  setTimeout(() => toast.classList.remove('show'), 3800);
 }
 
+// ══════════════════════════════
+// GOOGLE MAPS BOOTSTRAP
+// ══════════════════════════════
+(g => {
+  var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;
+  b=b[c]||(b[c]={});
+  var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{
+    await (a=m.createElement("script"));
+    e.set("libraries",[...r]+"");
+    for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);
+    e.set("callback",c+".maps."+q);
+    a.src="https://maps.googleapis.com/maps/api/js?"+e;
+    d[q]=f;
+    a.onerror=()=>h=n(Error(p+" could not load."));
+    a.nonce=m.querySelector("script[nonce]")?.nonce||"";
+    m.head.append(a)
+  }));
+  d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n));
+})({key: GOOGLE_MAPS_KEY, v: 'weekly'});
+
+// ══════════════════════════════
+// INIT
+// ══════════════════════════════
 renderMenu();
-</script>
+<\/script>
 
-
-</body></html>
+<\/body>
+<\/html>
