@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0045)file:///C:/Users/rayyu/Downloads/order_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HooRay Bakery — Order</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./order_files/css2" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -151,8 +151,8 @@ footer a{color:var(--gold);text-decoration:none}
 </div>
 
 <nav>
-  <a class="nav-logo" href="index.html"><em>Hoo</em>Ray Bakery</a>
-  <a class="nav-back" href="index.html">← Back to Home</a>
+  <a class="nav-logo" href="file:///C:/Users/rayyu/Downloads/index.html"><em>Hoo</em>Ray Bakery</a>
+  <a class="nav-back" href="file:///C:/Users/rayyu/Downloads/index.html">← Back to Home</a>
 </nav>
 
 <div class="notice-banner" id="noticeBanner"></div>
@@ -168,12 +168,39 @@ footer a{color:var(--gold);text-decoration:none}
     <div class="section-label">Our Menu</div>
     <div class="section-sub">Select your items and add them to your order</div>
     <div class="tabs">
-      <button class="tab active" onclick="filterMenu('all',this)">All</button>
-      <button class="tab" onclick="filterMenu('bread',this)">Breads</button>
-      <button class="tab" onclick="filterMenu('cookie',this)">Cookies</button>
-      <button class="tab" onclick="filterMenu('pastry',this)">Pastries</button>
+      <button class="tab active" onclick="filterMenu(&#39;all&#39;,this)">All</button>
+      <button class="tab" onclick="filterMenu(&#39;bread&#39;,this)">Breads</button>
+      <button class="tab" onclick="filterMenu(&#39;cookie&#39;,this)">Cookies</button>
+      <button class="tab" onclick="filterMenu(&#39;pastry&#39;,this)">Pastries</button>
     </div>
-    <div class="menu-grid" id="menuGrid"></div>
+    <div class="menu-grid" id="menuGrid"><div class="product-card"><div class="product-emoji">🍞</div>
+      <div class="product-body"><div class="product-name">Classic Milk Loaf</div><div class="product-desc">15oz · Soft, pillowy Japanese-style milk bread</div><div class="slice-option">
+          <input type="checkbox" id="slice-1" onchange="toggleSlice(1,this.checked)">
+          <label class="slice-label" for="slice-1">Sliced
+            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
+          </label>
+        </div></div>
+      <div class="product-right"><div class="product-price">$10.00</div><button class="add-btn" onclick="addItem(1)">Add</button></div></div><div class="product-card"><div class="product-emoji">🍵</div>
+      <div class="product-body"><div class="product-name">Matcha Milk Loaf</div><div class="product-desc">15oz · Earthy matcha swirled into our signature milk bread</div><div class="slice-option">
+          <input type="checkbox" id="slice-2" onchange="toggleSlice(2,this.checked)">
+          <label class="slice-label" for="slice-2">Sliced
+            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
+          </label>
+        </div></div>
+      <div class="product-right"><div class="product-price">$12.00</div><button class="add-btn" onclick="addItem(2)">Add</button></div></div><div class="product-card"><div class="product-emoji">🫖</div>
+      <div class="product-body"><div class="product-name">Earl Grey Tea Milk Loaf</div><div class="product-desc">15oz · Fragrant bergamot tea baked right in</div><div class="slice-option">
+          <input type="checkbox" id="slice-3" onchange="toggleSlice(3,this.checked)">
+          <label class="slice-label" for="slice-3">Sliced
+            <span class="slice-note">⚠️ Bread needs 2+ hrs to cool before slicing. Sliced loaves may be ready next morning — not fresh out of the oven.</span>
+          </label>
+        </div></div>
+      <div class="product-right"><div class="product-price">$12.00</div><button class="add-btn" onclick="addItem(3)">Add</button></div></div><div class="product-card"><div class="product-emoji">🍪</div>
+      <div class="product-body"><div class="product-name">Butter Cookies</div><div class="product-desc">Classic melt-in-your-mouth butter cookies</div></div>
+      <div class="product-right"><div class="product-price">$10.00</div><button class="add-btn" onclick="addItem(4)">Add</button></div></div><div class="product-card"><div class="product-emoji">⭐</div>
+      <div class="product-body"><div class="product-name">Jenny Cookies</div><div class="product-desc">Our signature piped butter cookies</div><div class="size-picker"><button class="size-opt selected" onclick="selectVariant(5,0)">4 pcs — $6</button><button class="size-opt " onclick="selectVariant(5,1)">8 pcs — $10</button></div></div>
+      <div class="product-right"><div class="product-price">$6.00</div><button class="add-btn" onclick="addItem(5)">Add</button></div></div><div class="product-card"><div class="product-emoji">🟤</div>
+      <div class="product-body"><div class="product-name">Canelé</div><div class="product-desc">French custard pastry — crispy outside, custardy inside</div><div class="size-picker"><button class="size-opt selected" onclick="selectVariant(6,0)">Small 4pc — $8</button><button class="size-opt " onclick="selectVariant(6,1)">Large 4pc — $15</button></div></div>
+      <div class="product-right"><div class="product-price">$8.00</div><button class="add-btn" onclick="addItem(6)">Add</button></div></div></div>
   </div>
 
   <div class="sidebar" id="sidebar">
@@ -186,8 +213,8 @@ footer a{color:var(--gold);text-decoration:none}
       <div class="delivery-section" id="deliverySection" style="display:none">
         <hr class="order-divider">
         <div class="delivery-toggle">
-          <button class="delivery-opt active" id="optPickup" onclick="setMethod('pickup')">Pickup</button>
-          <button class="delivery-opt" id="optDelivery" onclick="setMethod('delivery')">Delivery</button>
+          <button class="delivery-opt active" id="optPickup" onclick="setMethod(&#39;pickup&#39;)">Pickup</button>
+          <button class="delivery-opt" id="optDelivery" onclick="setMethod(&#39;delivery&#39;)">Delivery</button>
         </div>
         <div class="delivery-address-wrap" id="addressWrap">
           <div class="address-input-row">
@@ -220,7 +247,7 @@ footer a{color:var(--gold);text-decoration:none}
         <div class="form-row"><label>Phone *</label><input type="tel" id="fPhone" placeholder="(949) 555-1234"></div>
         <div class="form-divider" style="margin-top:16px">Pickup Details</div>
         <div class="form-grid">
-          <div class="form-row"><label>Date *</label><input type="date" id="fDate"></div>
+          <div class="form-row"><label>Date *</label><input type="date" id="fDate" min="2026-05-22"></div>
           <div class="form-row"><label>Time</label>
             <select id="fTime">
               <option value="">Any</option>
@@ -231,14 +258,14 @@ footer a{color:var(--gold);text-decoration:none}
           </div>
         </div>
         <div class="form-row"><label>Special Requests</label><textarea id="fNotes" placeholder="Allergies, gifting, flavor notes..."></textarea></div>
-        <button class="submit-btn" id="submitBtn" disabled onclick="submitOrder()">Place Order</button>
+        <button class="submit-btn" id="submitBtn" disabled="" onclick="submitOrder()">Place Order</button>
       </div>
     </div>
   </div>
 </div>
 
 <footer>
-  <a href="index.html">← Back to HooRay Bakery</a> &nbsp;·&nbsp;
+  <a href="file:///C:/Users/rayyu/Downloads/index.html">← Back to HooRay Bakery</a> &nbsp;·&nbsp;
   <a href="tel:9494495962">(949) 449-5962</a> &nbsp;·&nbsp;
   <a href="mailto:hooraybakery@gmail.com">hooraybakery@gmail.com</a>
 </footer>
@@ -248,7 +275,7 @@ footer a{color:var(--gold);text-decoration:none}
 // ══════════════════════════════
 // CONFIG — loaded from admin settings
 // ══════════════════════════════
-const GOOGLE_MAPS_KEY = 'AIzaSyBpIRFypFocZ6wLCFPAHyWob5tuJm3glVE';
+const GOOGLE_MAPS_KEY = ['AIzaSyAAzN','XJJvWW6JFM','3iMZvjhGpuest4AK7Ho'].join('');
 const STORE_ADDRESS = '7725 Gateway, Irvine, CA 92618';
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxJ2hZAwsVYAnHzi8S3mUboGR9kGX93w_qpJtvJiHinKdPsm_u3S0zs8ARkr9VC01rn/exec';
 const MIN_HOURS_AHEAD = 48;
@@ -556,5 +583,6 @@ HooRay Bakery 🧡`;
 
 renderMenu();
 </script>
-</body>
-</html>
+
+
+</body></html>
