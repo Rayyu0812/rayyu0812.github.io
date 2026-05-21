@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — HooRay Bakery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+--cream:#f8f4ee;
+  --warm:#f0e8da;
+  --gold:#b5843a;
+  --gold-light:#d4a85a;
+  --muted:#7a6e62;
+--white:#ffffff;
+  }
+html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s}
+nav.scrolled{background:rgba(248,244,238,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(181,132,58,.15)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);text-decoration:none;letter-spacing:.04em}
+.nav-logo em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.75;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+  .nav-order{background:var(--ink);color:var(--cream)!important;padding:9px 22px;border-radius:2px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s;opacity:1!important}
+.nav-order:hover{background:var(--gold)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-hamburger span{width:24px;height:1.5px;background:var(--ink);display:block;transition:all .3s}
+
+/* PAGE HERO */
+.page-hero{padding:160px 48px 80px;background:var(--ink);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('market.jpg') center/cover no-repeat;opacity:.18}
+  .page-hero-inner{position:relative}
+.page-hero-tag{display:inline-block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:1px;margin-bottom:24px}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5rem);font-weight:300;color:var(--white);line-height:1.05}
+.page-hero h1 em{font-style:italic;color:var(--gold-light)}
+.page-hero-sub{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.6);margin-top:20px;letter-spacing:.06em}
+
+/* STORY CHAPTERS */
+.story-page{max-width:860px;margin:0 auto;padding:96px 48px}
+.chapter{margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid rgba(181,132,58,.15)}
+.chapter:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.chapter-num{font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--gold);letter-spacing:.1em;margin-bottom:12px}
+.chapter h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:var(--ink);line-height:1.15;margin-bottom:28px}
+.chapter h2 em{font-style:italic}
+.chapter p{font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:18px}
+.chapter p strong{font-weight:500;color:var(--ink);font-style:italic}
+.chapter p:last-child{margin-bottom:0}
+
+/* NAME ORIGIN BLOCK */
+.name-block{background:var(--warm);border-left:3px solid var(--gold);padding:32px 40px;margin:32px 0;border-radius:0 2px 2px 0}
+.name-block p{font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:12px}
+.name-block p:last-child{margin-bottom:0}
+  .name-block strong{color:var(--ink)}
+
+/* SIGNATURE */
+.story-signature{font-family:'Cormorant Garamond',serif;font-size:2rem;font-style:italic;color:var(--gold);margin-top:48px;display:block}
+
+  /* BELIEFS */
+  .beliefs-section{background:var(--ink);padding:96px 48px}
+.beliefs-inner{max-width:860px;margin:0 auto}
+.beliefs-inner .section-eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
+.beliefs-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:48px}
+.beliefs-inner h2 em{font-style:italic}
+.belief-item{display:flex;gap:32px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:flex-start}
+.belief-item:last-child{border-bottom:none}
+  .belief-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;font-style:italic;color:var(--gold);opacity:.4;min-width:60px;line-height:1}
+.belief-text h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:8px}
+.belief-text p{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.75}
+
+/* CTA */
+.about-cta{padding:96px 48px;text-align:center}
+.about-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--ink);margin-bottom:20px}
+.about-cta h2 em{font-style:italic}
+.about-cta p{font-size:.9rem;font-weight:300;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.8}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--cream);padding:14px 36px;text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+.btn-primary:hover{background:var(--gold)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);color:var(--ink);padding:13px 36px;text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:all .2s;margin-left:16px}
+.btn-outline:hover{background:var(--ink);color:var(--cream)}
+
+/* FOOTER */
+footer{background:var(--ink);color:var(--cream);padding:56px 48px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--cream);font-style:italic}
+.footer-logo em{color:var(--gold-light)}
+  .footer-tagline{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.4);margin-top:8px;letter-spacing:.08em}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold-light)}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.06em}
+.footer-social a{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-social a:hover{color:var(--gold-light)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+nav{padding:16px 24px}
+.nav-links{display:none}
+.nav-hamburger{display:flex}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:32px;z-index:99}
+.nav-links.open a{font-size:1.1rem}
+  .page-hero{padding:120px 24px 60px}
+.story-page{padding:64px 24px}
+.beliefs-section,.about-cta,footer{padding:64px 24px}
+.btn-outline{margin-left:0;margin-top:12px}
+.about-cta .btn-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+}
+</style>
+  </head>
+  <body>
+
+  <!-- NAV -->
+  <nav id="nav">
+  <a class="nav-logo" href="index.html"><em>Hoo</em>Ray Bakery</a>
+  <div class="nav-links" id="navLinks">
+  <a href="index.html#story">Our Story</a>
+  <a href="index.html#menu">Menu</a>
+  <a href="index.html#process">Process</a>
+  <a href="index.html#contact">Visit</a>
+  <a href="order.html" class="nav-order">Order Now</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+  </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+  <div class="page-hero-inner">
+  <div class="page-hero-tag">HooRay Bakery · Irvine, CA</div>
+<h1>Our <em>Story</em></h1>
+<p class="page-hero-sub">A home kitchen, a lifetime of baking, and a name born from love.</p>
+  </div>
+  </div>
+
+  <!-- STORY CHAPTERS -->
+  <div class="story-page">
+
+  <div class="chapter reveal">
+  <p class="chapter-num">01</p>
+  <h2>Where My Baking<br><em>Journey Began</em></h2>
+<p>My story with baking began when I was very young. Back in the early 2000s, my mom started learning how to bake cakes. At that time, tutorials were rare and electric mixers weren't common, so everything — from egg whites to cream — was whisked by hand. My mom and I would take turns until our arms got tired. Somewhere between laughter and patience, our very first homemade cake came to life.</p>
+  <p>I still remember thinking, <strong>"Why does this whipped cream taste so good?"</strong> Only later did I realize it was made with real dairy cream — while most store-bought cakes back then used non-dairy substitutes.</p>
+  <p>As baking gradually became more popular, we explored more treats together: cookies, shortbread, salted egg yolk pastries, pineapple cakes… I was always my mom's little helper in the kitchen, and that was when I first understood how much joy baking could bring.</p>
+  </div>
+
+  <div class="chapter reveal">
+  <p class="chapter-num">02</p>
+  <h2>From Curiosity to<br><em>a True Passion</em></h2>
+  <p>I truly began baking on my own during college. With more free time, I started experimenting with everything — tiramisu, matcha tiramisu, cupcakes, cheesecakes, mochi, cream puffs, mooncakes, pumpkin tarts, savory pastries, butter mochi… <strong>If I craved it, I made it.</strong></p>
+<p>Later, I bought my first stand mixer, and that's when my obsession with bread — especially milk loaves — began. From loaves that barely rose to the first perfect oven spring, from failed attempts to small breakthroughs, each step felt like learning a new language spoken by dough. Over time, I began making loaves that my friends genuinely loved — and that encouragement stayed with me.</p>
+  </div>
+
+  <div class="chapter reveal">
+  <p class="chapter-num">03</p>
+  <h2>How HooRay's Bakery<br><em>Began</em></h2>
+  <p>HooRay's Bakery began with a simple intention — to share the joy that baking has brought me since childhood.</p>
+  <p>I love discovering how different people experience flavor, how the same recipe can feel completely different to someone else. Every item on our menu is something I truly love, and something my friends have enjoyed as well. Sharing that joy felt like the most natural next step.</p>
+  </div>
+
+  <div class="chapter reveal">
+  <p class="chapter-num">04</p>
+  <h2>The Story Behind<br><em>Our Name</em></h2>
+<p>The name "HooRay's" carries a little piece of both of us.</p>
+  <div class="name-block">
+  <p>My longtime username has been <strong>"hooty,"</strong> inspired by an owl-shaped, microwaveable hand warmer a close friend once brought me from the U.S. I loved the name — the "oo" even looks like an owl's eyes — and I've used it for over a decade.</p>
+  <p>My boyfriend's name is <strong>Ray</strong>. While brainstorming bakery names, we tried combining letters and inventing new words. Then one day, he suddenly said, <strong>"hoo-ray."</strong></p>
+<p>We both smiled instantly — it sounded joyful, celebratory, and full of warmth. And that's exactly how we hope our bakery feels to you.</p>
+  </div>
+  <span class="story-signature">— HooRay Bakery</span>
+  </div>
+
+  </div>
+
+  <!-- WHAT WE BELIEVE -->
+  <section class="beliefs-section">
+  <div class="beliefs-inner">
+  <p class="section-eyebrow reveal">Our Values</p>
+  <h2 class="reveal">What We <em>Believe In</em></h2>
+  <div class="belief-item reveal">
+  <div class="belief-num">01</div>
+  <div class="belief-text">
+  <h3>Small Batches, Baked Fresh</h3>
+  <p>Everything we make is crafted in small batches and baked fresh each day. Quality over quantity — every time.</p>
+</div>
+</div>
+  <div class="belief-item reveal">
+  <div class="belief-num">02</div>
+  <div class="belief-text">
+  <h3>Everyone Tastes Differently</h3>
+<p>We know that everyone experiences flavor differently, so your feedback truly matters to us. It's an essential part of what makes this baking journey meaningful.</p>
+  </div>
+  </div>
+  <div class="belief-item reveal">
+  <div class="belief-num">03</div>
+  <div class="belief-text">
+  <h3>No Preservatives, Ever</h3>
+  <p>Real ingredients only. No shortcuts, no additives — just flour, milk, butter, and care baked with heart.</p>
+  </div>
+  </div>
+  <div class="belief-item reveal">
+  <div class="belief-num">04</div>
+  <div class="belief-text">
+  <h3>Made with Love</h3>
+<p>A home kitchen passion project turned community favorite — every loaf, cookie, and pastry is made with genuine love and intention.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+  <section class="about-cta">
+  <h2>Ready to <em>Taste</em> the Story?</h2>
+  <p>Every item on our menu carries a piece of this journey. We'd love for you to be part of it.</p>
+  <div class="btn-wrap">
+  <a href="order.html" class="btn-primary">Place an Order</a>
+  <a href="index.html#menu" class="btn-outline">View Menu</a>
+  </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+  <div class="footer-inner">
+  <div class="footer-top">
+  <div>
+  <div class="footer-logo"><em>Hoo</em>Ray Bakery</div>
+  <div class="footer-tagline">Small-batch bread &amp; treats · Irvine, CA · Made with love</div>
+  </div>
+  <div class="footer-links">
+  <a href="index.html#story">Our Story</a>
+  <a href="index.html#menu">Menu</a>
+  <a href="order.html">Order Now</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="https://www.instagram.com/hooraysbakery/" target="_blank">Instagram</a>
+  </div>
+  </div>
+  <div class="footer-bottom">
+  <span class="footer-copy">&copy; 2025 HooRay Bakery &middot; All rights reserved</span>
+  <div class="footer-social"><a href="https://www.instagram.com/hooraysbakery/" target="_blank">@hooraysbakery</a></div>
+  </div>
+  </div>
+  </footer>
+
+  <script>
+  const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+  </body>
+  </html>
