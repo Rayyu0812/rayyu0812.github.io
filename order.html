@@ -8,237 +8,83 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #1a1410;
-      --cream: #f8f4ee;
-      --warm: #f0e8da;
-      --gold: #b5843a;
-      --gold-light: #d4a85a;
-      --muted: #7a6e62;
-      --card-radius: 12px;
-    }
+    :root { --ink: #1a1410; --cream: #f8f4ee; --warm: #f0e8da; --gold: #b5843a; --gold-light: #d4a85a; --muted: #7a6e62; --card-radius: 12px; }
     body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; }
-
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(248,244,238,0.96); backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(181,132,58,0.15);
-      padding: 0 40px; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(248,244,238,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(181,132,58,0.15); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
     .nav-order { background: var(--gold); color: #fff !important; padding: 8px 20px; border-radius: 4px; }
     .nav-order:hover { background: var(--gold-light) !important; color: #fff !important; }
-
-    /* HERO */
-    .order-hero {
-      background: linear-gradient(135deg, #2a1f14 0%, #1a1410 60%, #2d1e0f 100%);
-      padding: 72px 40px 64px;
-      text-align: center; position: relative; overflow: hidden;
-    }
-    .order-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url('hero.jpg') center/cover no-repeat;
-      opacity: 0.18;
-    }
+    .order-hero { background: linear-gradient(135deg, #2a1f14 0%, #1a1410 60%, #2d1e0f 100%); padding: 72px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+    .order-hero::before { content: ''; position: absolute; inset: 0; background: url('hero.jpg') center/cover no-repeat; opacity: 0.18; }
     .order-hero-inner { position: relative; z-index: 1; }
     .order-hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; }
     .order-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 16px; }
     .order-hero p { font-size: 0.92rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-
-    /* LAYOUT */
-    .order-layout {
-      display: grid; grid-template-columns: 1fr 380px; gap: 0;
-      max-width: 1200px; margin: 0 auto; padding: 48px 24px;
-      align-items: start;
-    }
+    .order-layout { display: grid; grid-template-columns: 1fr 380px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 48px 24px; align-items: start; }
     @media (max-width: 900px) { .order-layout { grid-template-columns: 1fr; } }
-
-    /* MENU PANEL */
     .menu-panel { padding-right: 48px; }
     @media (max-width: 900px) { .menu-panel { padding-right: 0; } }
-
-    .menu-section-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 0.75rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 20px; padding-bottom: 10px;
-      border-bottom: 1px solid rgba(181,132,58,0.25);
-    }
-
-    /* CATEGORY TABS */
+    .menu-section-title { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(181,132,58,0.25); }
     .category-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-    .cat-tab {
-      font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 7px 16px; border-radius: 20px; cursor: pointer; border: none;
-      background: var(--warm); color: var(--muted); transition: all 0.2s;
-    }
+    .cat-tab { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 16px; border-radius: 20px; cursor: pointer; border: none; background: var(--warm); color: var(--muted); transition: all 0.2s; }
     .cat-tab.active, .cat-tab:hover { background: var(--gold); color: #fff; }
-
-    /* PRODUCT CARD */
-    .product-card {
-      display: grid; grid-template-columns: 100px 1fr auto;
-      gap: 20px; align-items: center;
-      background: #fff; border-radius: var(--card-radius);
-      padding: 20px; margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(26,20,16,0.06);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
+    .product-card { display: grid; grid-template-columns: 100px 1fr auto; gap: 20px; align-items: center; background: #fff; border-radius: var(--card-radius); padding: 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(26,20,16,0.06); transition: box-shadow 0.2s, transform 0.2s; display: none; }
+    .product-card.visible { display: grid; }
     .product-card:hover { box-shadow: 0 6px 24px rgba(26,20,16,0.1); transform: translateY(-1px); }
-    .product-card[data-cat] { display: none; }
-    .product-card[data-cat].visible { display: grid; }
-
-    .product-img {
-      width: 100px; height: 100px; border-radius: 8px;
-      object-fit: cover; display: block; flex-shrink: 0;
-    }
-    .product-img-placeholder {
-      width: 100px; height: 100px; border-radius: 8px;
-      background: var(--warm); display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; flex-shrink: 0;
-    }
-
+    .product-img { width: 100px; height: 100px; border-radius: 8px; object-fit: cover; display: block; flex-shrink: 0; }
+    .product-img-placeholder { width: 100px; height: 100px; border-radius: 8px; background: var(--warm); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
     .product-info { min-width: 0; }
     .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
     .product-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
     .product-tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .product-tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; background: var(--warm); color: var(--muted); }
-
     .product-action { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
     .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--gold); white-space: nowrap; }
-    .add-btn {
-      width: 36px; height: 36px; border-radius: 50%; border: none;
-      background: var(--gold); color: #fff; font-size: 1.3rem; line-height: 1;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.15s;
-    }
+    .add-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--gold); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.15s; }
     .add-btn:hover { background: var(--gold-light); transform: scale(1.1); }
-
-    /* SIZE SELECTOR for items with variants */
-    .size-select {
-      font-family: 'Jost', sans-serif; font-size: 0.75rem;
-      border: 1px solid rgba(181,132,58,0.3); border-radius: 6px;
-      padding: 5px 10px; background: var(--cream); color: var(--ink); cursor: pointer;
-    }
-
-    /* ORDER SIDEBAR */
-    .order-sidebar {
-      position: sticky; top: 80px;
-      background: #fff; border-radius: var(--card-radius);
-      box-shadow: 0 2px 20px rgba(26,20,16,0.08);
-      overflow: hidden;
-    }
-    .sidebar-header {
-      background: var(--ink); padding: 20px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    .order-sidebar { position: sticky; top: 80px; background: #fff; border-radius: var(--card-radius); box-shadow: 0 2px 20px rgba(26,20,16,0.08); overflow: hidden; }
+    .sidebar-header { background: var(--ink); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
     .sidebar-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: #fff; }
-    .cart-count {
-      background: var(--gold); color: #fff;
-      width: 24px; height: 24px; border-radius: 50%;
-      font-size: 0.75rem; font-weight: 500;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .cart-count { background: var(--gold); color: #fff; width: 24px; height: 24px; border-radius: 50%; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; justify-content: center; }
     .sidebar-body { padding: 24px; }
-
-    /* CART ITEMS */
     #cartItems { min-height: 60px; margin-bottom: 16px; }
-    .cart-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 0; border-bottom: 1px solid var(--warm);
-      font-size: 0.85rem;
-    }
+    .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--warm); font-size: 0.85rem; }
     .cart-item-name { color: var(--ink); font-weight: 400; flex: 1; }
     .cart-item-qty { display: flex; align-items: center; gap: 8px; margin: 0 12px; }
     .qty-btn { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(181,132,58,0.4); background: transparent; color: var(--gold); font-size: 1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .qty-btn:hover { background: var(--gold); color: #fff; }
     .cart-item-price { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; white-space: nowrap; }
     .cart-empty { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 20px 0; font-style: italic; }
-
-    .cart-subtotal {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-top: 1px solid var(--warm); margin-top: 4px;
-      font-size: 0.85rem; color: var(--muted);
-    }
+    .cart-subtotal { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid var(--warm); margin-top: 4px; font-size: 0.85rem; color: var(--muted); }
     .cart-subtotal strong { color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
-
-    /* DIVIDER */
     .sidebar-divider { height: 1px; background: var(--warm); margin: 16px 0; }
-
-    /* DELIVERY SECTION */
     .section-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
-
     .method-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
-    .method-btn {
-      flex: 1; padding: 9px; border-radius: 6px; border: 1.5px solid var(--warm);
-      background: transparent; font-family: 'Jost', sans-serif; font-size: 0.78rem;
-      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
-      color: var(--muted); transition: all 0.2s;
-    }
+    .method-btn { flex: 1; padding: 9px; border-radius: 6px; border: 1.5px solid var(--warm); background: transparent; font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--muted); transition: all 0.2s; }
     .method-btn.active { border-color: var(--gold); background: var(--gold); color: #fff; }
-
     #addressSection { display: none; }
     #addressSection.show { display: block; }
-
     .input-wrap { margin-bottom: 12px; position: relative; }
     .input-wrap label { display: block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-    .sidebar-input {
-      width: 100%; padding: 10px 12px; border: 1.5px solid var(--warm);
-      border-radius: 6px; font-family: 'Jost', sans-serif; font-size: 0.85rem;
-      background: var(--cream); color: var(--ink); outline: none; transition: border-color 0.2s;
-    }
+    .sidebar-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--warm); border-radius: 6px; font-family: 'Jost', sans-serif; font-size: 0.85rem; background: var(--cream); color: var(--ink); outline: none; transition: border-color 0.2s; }
     .sidebar-input:focus { border-color: var(--gold); }
     #addrSuggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid var(--warm); border-radius: 6px; z-index: 50; display: none; }
     #addrSuggestions.show { display: block; }
     #addrSuggestions div { padding: 10px 12px; font-size: 0.82rem; cursor: pointer; border-bottom: 1px solid var(--warm); color: var(--ink); }
     #addrSuggestions div:hover { background: var(--warm); }
     #deliveryResult { font-size: 0.8rem; margin-top: 6px; color: var(--muted); min-height: 18px; }
-
-    .sidebar-divider { height: 1px; background: var(--warm); margin: 16px 0; }
-
     .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-    /* DATE/TIME */
     .notice { font-size: 0.75rem; color: var(--muted); margin-top: 4px; font-style: italic; }
-
-    /* CHECKOUT BTN */
-    .checkout-btn {
-      width: 100%; padding: 14px; margin-top: 16px;
-      background: var(--gold); border: none; border-radius: 8px;
-      font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: #fff; cursor: pointer; transition: background 0.2s;
-    }
+    .checkout-btn { width: 100%; padding: 14px; margin-top: 16px; background: var(--gold); border: none; border-radius: 8px; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; cursor: pointer; transition: background 0.2s; }
     .checkout-btn:hover { background: var(--gold-light); }
     .checkout-btn:disabled { background: var(--muted); cursor: not-allowed; opacity: 0.6; }
-
-    /* TOAST */
-    #toast {
-      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
-      background: var(--ink); color: #fff; padding: 12px 28px;
-      border-radius: 30px; font-size: 0.85rem; letter-spacing: 0.04em;
-      opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 200; pointer-events: none;
-    }
+    #toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 12px 28px; border-radius: 30px; font-size: 0.85rem; letter-spacing: 0.04em; opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 200; pointer-events: none; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* MINIMUM ORDER NOTICE */
-    .min-notice {
-      background: rgba(181,132,58,0.08); border-left: 3px solid var(--gold);
-      padding: 10px 14px; border-radius: 0 6px 6px 0;
-      font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 20px; }
-      .order-hero { padding: 48px 20px 40px; }
-      .order-layout { padding: 24px 16px; }
-      .product-card { grid-template-columns: 80px 1fr auto; gap: 12px; padding: 14px; }
-      .product-img, .product-img-placeholder { width: 80px; height: 80px; }
-    }
+    .min-notice { background: rgba(181,132,58,0.08); border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    @media (max-width: 600px) { nav { padding: 0 20px; } .order-hero { padding: 48px 20px 40px; } .order-layout { padding: 24px 16px; } .product-card { grid-template-columns: 80px 1fr auto; gap: 12px; padding: 14px; } .product-img, .product-img-placeholder { width: 80px; height: 80px; } }
   </style>
 </head>
 <body>
@@ -262,48 +108,32 @@
 </section>
 
 <div class="order-layout">
-
-  <!-- MENU PANEL -->
   <div class="menu-panel">
     <p class="menu-section-title">Our Menu</p>
-
     <div class="category-tabs">
       <button class="cat-tab active" data-filter="all">All Items</button>
       <button class="cat-tab" data-filter="loaf">Loaves</button>
       <button class="cat-tab" data-filter="cookie">Cookies</button>
       <button class="cat-tab" data-filter="pastry">Pastries</button>
     </div>
-
     <div id="productList"></div>
   </div>
 
-  <!-- ORDER SIDEBAR -->
   <div class="order-sidebar">
     <div class="sidebar-header">
       <h3>Your Order</h3>
       <div class="cart-count" id="cartCountBadge">0</div>
     </div>
     <div class="sidebar-body">
-
       <div id="cartItems"><p class="cart-empty">Your basket is empty</p></div>
-
-      <div class="cart-subtotal">
-        <span>Subtotal</span>
-        <strong id="subtotalDisplay">$0.00</strong>
-      </div>
-
-      <div class="min-notice">
-        Free delivery on orders over $30. Delivery radius: 20 miles from Irvine, CA.
-      </div>
-
+      <div class="cart-subtotal"><span>Subtotal</span><strong id="subtotalDisplay">$0.00</strong></div>
+      <div class="min-notice">Free delivery on orders over $30. Delivery radius: 20 miles from Irvine, CA.</div>
       <div class="sidebar-divider"></div>
-
       <p class="section-label">Fulfillment</p>
       <div class="method-toggle">
         <button class="method-btn active" id="btnPickup" onclick="setMethod('pickup')">Pickup</button>
         <button class="method-btn" id="btnDelivery" onclick="setMethod('delivery')">Delivery</button>
       </div>
-
       <div id="addressSection">
         <div class="input-wrap">
           <label>Delivery Address</label>
@@ -312,43 +142,24 @@
         </div>
         <div id="deliveryResult"></div>
       </div>
-
       <div class="sidebar-divider"></div>
-
       <p class="section-label">Schedule</p>
       <div class="input-row">
-        <div class="input-wrap">
-          <label>Date</label>
-          <input id="fDate" class="sidebar-input" type="date">
-        </div>
-        <div class="input-wrap">
-          <label>Time</label>
-          <input id="fTime" class="sidebar-input" type="time" value="12:00">
-        </div>
+        <div class="input-wrap"><label>Date</label><input id="fDate" class="sidebar-input" type="date"></div>
+        <div class="input-wrap"><label>Time</label><input id="fTime" class="sidebar-input" type="time" value="12:00"></div>
       </div>
       <p class="notice">48-hour advance notice required</p>
-
       <div class="sidebar-divider"></div>
-
       <p class="section-label">Your Details</p>
-      <div class="input-wrap">
-        <label>Name</label>
-        <input id="fName" class="sidebar-input" type="text" placeholder="Full name">
-      </div>
-      <div class="input-wrap">
-        <label>Phone</label>
-        <input id="fPhone" class="sidebar-input" type="tel" placeholder="(xxx) xxx-xxxx">
-      </div>
+      <div class="input-wrap"><label>Name</label><input id="fName" class="sidebar-input" type="text" placeholder="Full name"></div>
+      <div class="input-wrap"><label>Phone</label><input id="fPhone" class="sidebar-input" type="tel" placeholder="(xxx) xxx-xxxx"></div>
       <div class="input-wrap">
         <label>Notes <span style="font-style:italic;font-weight:300;text-transform:none;">(optional)</span></label>
         <textarea id="fNotes" class="sidebar-input" rows="2" placeholder="Allergies, special requests..."></textarea>
       </div>
-
       <button class="checkout-btn" id="checkoutBtn" onclick="submitOrder()">Place Order</button>
-
     </div>
   </div>
-
 </div>
 
 <div id="toast">Order placed! We will confirm shortly.</div>
@@ -360,14 +171,14 @@ const STORE_LAT = 33.6846, STORE_LNG = -117.7963;
 const DELIVERY_RATE = 1.00, MAX_MILES = 20, FREE_MIN = 30;
 
 const PRODUCTS = [
-  { id:'classic',  name:'Classic Milk Loaf',     price:10, unit:'loaf', img:'classic.jpg',  cat:'loaf',   desc:'Pillowy soft Japanese-style milk bread. Perfectly golden crust with a feather-light crumb.', tags:['Signature','Bestseller'] },
-  { id:'matcha',   name:'Matcha Milk Loaf',       price:12, unit:'loaf', img:'matcha.jpg',   cat:'loaf',   desc:'Premium ceremonial matcha swirled into our classic milk bread dough. Earthy, delicate, and beautiful.', tags:['Seasonal'] },
-  { id:'earlgrey', name:'Earl Grey Tea Loaf',     price:12, unit:'loaf', img:'classic.jpg',  cat:'loaf',   desc:'Fragrant Earl Grey infused into every layer. Subtle floral notes with a tender crumb.', tags:['Seasonal','Fan Fav'] },
-  { id:'butter',   name:'Butter Cookies',         price:10, unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'Classic melt-in-your-mouth butter cookies, delicately crisp and rich. Baked in small batches.', tags:['Classic'] },
-  { id:'jenny_sm', name:'Jenny Cookies (Small)',  price:6,  unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'Our beloved Jenny cookies in a petite gift box. Perfect for gifting or a sweet treat.', tags:[] },
-  { id:'jenny_lg', name:'Jenny Cookies (Large)',  price:10, unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'The full Jenny cookie experience — a generous box of our signature piped cookies.', tags:['Popular'] },
-  { id:'canele_sm',name:'Canelé (Single)',        price:8,  unit:'each', img:'market.jpg',   cat:'pastry', desc:'Classic Bordeaux-style canelé. Mahogany crust, custardy center, perfumed with vanilla and rum.', tags:['French'] },
-  { id:'canele_lg',name:'Canelé (Box of 6)',      price:15, unit:'box',  img:'market.jpg',   cat:'pastry', desc:'Six canelés presented in a beautiful gift box. A stunning treat for any occasion.', tags:['Gift','French'] },
+  { id:'classic',  name:'Classic Milk Loaf',     price:10, unit:'loaf', img:'classic.jpg',  cat:'loaf',   desc:'Pillowy soft Japanese-style milk bread. Perfectly golden crust with a feather-light crumb.',               tags:['Signature','Bestseller'] },
+  { id:'matcha',   name:'Matcha Milk Loaf',       price:12, unit:'loaf', img:'matcha.jpg',   cat:'loaf',   desc:'Premium ceremonial matcha swirled into our classic milk bread dough. Earthy, delicate, and beautiful.',   tags:['Seasonal'] },
+  { id:'earlgrey', name:'Earl Grey Tea Loaf',     price:12, unit:'loaf', img:'classic.jpg',  cat:'loaf',   desc:'Fragrant Earl Grey infused into every layer. Subtle floral notes with a tender crumb.',                   tags:['Seasonal','Fan Fav'] },
+  { id:'butter',   name:'Butter Cookies',         price:10, unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'Classic melt-in-your-mouth butter cookies, delicately crisp and rich. Baked in small batches.',          tags:['Classic'] },
+  { id:'jenny_sm', name:'Jenny Cookies (Small)',  price:6,  unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'Our beloved Jenny cookies in a petite gift box. Perfect for gifting or a sweet treat.',                  tags:[] },
+  { id:'jenny_lg', name:'Jenny Cookies (Large)',  price:10, unit:'box',  img:'cookies.jpg',  cat:'cookie', desc:'The full Jenny cookie experience — a generous box of our signature piped cookies.',                      tags:['Popular'] },
+  { id:'canele_sm',name:'Canele (Single)',         price:8,  unit:'each', img:'market.jpg',   cat:'pastry', desc:'Classic Bordeaux-style canele. Mahogany crust, custardy center, perfumed with vanilla and rum.',         tags:['French'] },
+  { id:'canele_lg',name:'Canele (Box of 6)',       price:15, unit:'box',  img:'market.jpg',   cat:'pastry', desc:'Six caneles presented in a beautiful gift box. A stunning treat for any occasion.',                     tags:['Gift','French'] },
 ];
 
 const cart = {};
@@ -376,10 +187,10 @@ let currentMethod = 'pickup';
 
 function renderMenu() {
   const list = document.getElementById('productList');
-  list.innerHTML = PRODUCTS.map(p => {
-    const tagsHTML = p.tags.map(t => '<span class="product-tag">' + t + '</span>').join('');
-    return '<div class="product-card visible" data-cat="' + p.cat + '" data-id="' + p.id + '">' +
-      '<img class="product-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">' +
+  list.innerHTML = PRODUCTS.map(function(p) {
+    const tagsHTML = p.tags.map(function(t) { return '<span class="product-tag">' + t + '</span>'; }).join('');
+    const cardHtml = '<div class="product-card visible" data-cat="' + p.cat + '" data-id="' + p.id + '">' +
+      '<img class="product-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.onerror=null;this.style.display=\'none\';if(this.nextElementSibling)this.nextElementSibling.style.display=\'flex\'">' +
       '<div class="product-img-placeholder" style="display:none">🍞</div>' +
       '<div class="product-info">' +
         '<p class="product-name">' + p.name + '</p>' +
@@ -388,21 +199,25 @@ function renderMenu() {
       '</div>' +
       '<div class="product-action">' +
         '<span class="product-price">$' + p.price + '</span>' +
-        '<button class="add-btn" onclick="addToCart('' + p.id + '')" title="Add to order">+</button>' +
+        '<button class="add-btn" data-pid="' + p.id + '" title="Add to order">+</button>' +
       '</div>' +
     '</div>';
+    return cardHtml;
   }).join('');
+  document.querySelectorAll('.add-btn[data-pid]').forEach(function(btn) {
+    btn.addEventListener('click', function() { addToCart(this.dataset.pid); });
+  });
 }
 
 function filterMenu(cat) {
-  document.querySelectorAll('.cat-tab').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
-  document.querySelectorAll('.product-card').forEach(card => {
+  document.querySelectorAll('.cat-tab').forEach(function(b) { b.classList.toggle('active', b.dataset.filter === cat); });
+  document.querySelectorAll('.product-card').forEach(function(card) {
     card.classList.toggle('visible', cat === 'all' || card.dataset.cat === cat);
   });
 }
 
-document.querySelectorAll('.cat-tab').forEach(btn => {
-  btn.addEventListener('click', () => filterMenu(btn.dataset.filter));
+document.querySelectorAll('.cat-tab').forEach(function(btn) {
+  btn.addEventListener('click', function() { filterMenu(btn.dataset.filter); });
 });
 
 function addToCart(id) {
@@ -421,7 +236,6 @@ function renderCart() {
   const cartEl = document.getElementById('cartItems');
   const badge = document.getElementById('cartCountBadge');
   let total = 0;
-
   if (!items.length) {
     cartEl.innerHTML = '<p class="cart-empty">Your basket is empty</p>';
     badge.textContent = '0';
@@ -429,45 +243,43 @@ function renderCart() {
     updateCheckoutBtn();
     return;
   }
-
-  const html = items.map(id => {
-    const p = PRODUCTS.find(x => x.id === id);
+  const html = items.map(function(id) {
+    const p = PRODUCTS.find(function(x) { return x.id === id; });
     const lineTotal = p.price * cart[id];
     total += lineTotal;
     return '<div class="cart-item">' +
       '<span class="cart-item-name">' + p.name + '</span>' +
       '<div class="cart-item-qty">' +
-        '<button class="qty-btn" onclick="changeQty('' + id + '',-1)">−</button>' +
+        '<button class="qty-btn" data-qid="' + id + '" data-delta="-1">-</button>' +
         '<span>' + cart[id] + '</span>' +
-        '<button class="qty-btn" onclick="changeQty('' + id + '',1)">+</button>' +
+        '<button class="qty-btn" data-qid="' + id + '" data-delta="1">+</button>' +
       '</div>' +
       '<span class="cart-item-price">$' + lineTotal.toFixed(2) + '</span>' +
     '</div>';
   }).join('');
-
   cartEl.innerHTML = html;
-  badge.textContent = items.reduce((s, id) => s + cart[id], 0);
+  cartEl.querySelectorAll('.qty-btn[data-qid]').forEach(function(btn) {
+    btn.addEventListener('click', function() { changeQty(this.dataset.qid, parseInt(this.dataset.delta)); });
+  });
+  badge.textContent = items.reduce(function(s, id) { return s + cart[id]; }, 0);
   document.getElementById('subtotalDisplay').textContent = '$' + total.toFixed(2);
   updateCheckoutBtn();
 }
 
 function updateCheckoutBtn() {
-  const total = Object.keys(cart).reduce((s,id) => { const p = PRODUCTS.find(x=>x.id===id); return s + p.price*cart[id]; }, 0);
-  const btn = document.getElementById('checkoutBtn');
-  btn.disabled = total === 0;
+  const total = Object.keys(cart).reduce(function(s,id) { const p = PRODUCTS.find(function(x){return x.id===id;}); return s + p.price*cart[id]; }, 0);
+  document.getElementById('checkoutBtn').disabled = total === 0;
 }
 
 function setMethod(m) {
   currentMethod = m;
   document.getElementById('btnPickup').classList.toggle('active', m==='pickup');
   document.getElementById('btnDelivery').classList.toggle('active', m==='delivery');
-  const sec = document.getElementById('addressSection');
-  sec.classList.toggle('show', m==='delivery');
+  document.getElementById('addressSection').classList.toggle('show', m==='delivery');
   deliveryFee = 0;
   updateCheckoutBtn();
 }
 
-// Min date = today + 2 days
 (function setMinDate(){
   const d = new Date(); d.setDate(d.getDate()+2);
   const s = d.toISOString().split('T')[0];
@@ -475,12 +287,10 @@ function setMethod(m) {
   f.min = s; f.value = s;
 })();
 
-// Address autocomplete
-let autocompleteService, geocoder, placesService;
+let autocompleteService, geocoder;
 function initMapsServices() {
   autocompleteService = new google.maps.places.AutocompleteService();
   geocoder = new google.maps.Geocoder();
-  placesService = new google.maps.places.PlacesService(document.createElement('div'));
 }
 
 const addrInput = document.getElementById('deliveryAddress');
@@ -491,9 +301,9 @@ addrInput.addEventListener('input', function() {
   if (!val || !autocompleteService) { suggestions.classList.remove('show'); return; }
   autocompleteService.getPlacePredictions({ input: val, componentRestrictions: { country: 'us' } }, function(preds) {
     if (!preds || !preds.length) { suggestions.classList.remove('show'); return; }
-    suggestions.innerHTML = preds.slice(0,5).map(p => '<div data-placeid="' + p.place_id + '">' + p.description + '</div>').join('');
+    suggestions.innerHTML = preds.slice(0,5).map(function(p) { return '<div data-placeid="' + p.place_id + '">' + p.description + '</div>'; }).join('');
     suggestions.classList.add('show');
-    suggestions.querySelectorAll('div').forEach(d => {
+    suggestions.querySelectorAll('div').forEach(function(d) {
       d.addEventListener('click', function() {
         addrInput.value = this.textContent;
         suggestions.classList.remove('show');
@@ -505,7 +315,7 @@ addrInput.addEventListener('input', function() {
 
 function calcDelivery(placeId) {
   if (!geocoder) return;
-  geocoder.geocode({ placeId }, function(results, status) {
+  geocoder.geocode({ placeId: placeId }, function(results, status) {
     if (status !== 'OK' || !results[0]) return;
     const loc = results[0].geometry.location;
     const dist = haversine(STORE_LAT, STORE_LNG, loc.lat(), loc.lng());
@@ -514,7 +324,7 @@ function calcDelivery(placeId) {
       res.innerHTML = '<span style="color:#c0392b">Outside delivery range (' + dist.toFixed(1) + ' mi). Max ' + MAX_MILES + ' miles.</span>';
       deliveryFee = -1;
     } else {
-      const subtotal = Object.keys(cart).reduce((s,id)=>{const p=PRODUCTS.find(x=>x.id===id);return s+p.price*cart[id];},0);
+      const subtotal = Object.keys(cart).reduce(function(s,id){const p=PRODUCTS.find(function(x){return x.id===id;});return s+p.price*cart[id];},0);
       deliveryFee = subtotal >= FREE_MIN ? 0 : parseFloat((dist * DELIVERY_RATE).toFixed(2));
       res.innerHTML = dist.toFixed(1) + ' mi away &mdash; ' + (deliveryFee===0 ? '<span style="color:var(--gold)">Free delivery!</span>' : 'Delivery fee: $' + deliveryFee.toFixed(2));
     }
@@ -525,7 +335,7 @@ function calcDelivery(placeId) {
 function haversine(lat1, lon1, lat2, lon2) {
   const R = 3958.8;
   const dLat = (lat2-lat1)*Math.PI/180, dLon = (lon2-lon1)*Math.PI/180;
-  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
@@ -539,46 +349,33 @@ function submitOrder() {
   const notes = document.getElementById('fNotes').value.trim();
   if (!name || !phone || !date) { alert('Please fill in your name, phone, and pickup/delivery date.'); return; }
   if (currentMethod === 'delivery' && deliveryFee === -1) { alert('Sorry, your address is outside our delivery range.'); return; }
-  if (currentMethod === 'delivery' && deliveryFee === 0 && !document.getElementById('deliveryAddress').value) { alert('Please enter a delivery address.'); return; }
-
-  const subtotal = items.reduce((s,id)=>{const p=PRODUCTS.find(x=>x.id===id);return s+p.price*cart[id];},0);
-  const orderLines = items.map(id=>{const p=PRODUCTS.find(x=>x.id===id);return p.name+' x'+cart[id]+' ($'+p.price+')'}).join(', ');
-
-  const payload = {
-    name, phone, date, time, notes,
-    method: currentMethod,
-    address: currentMethod==='delivery' ? document.getElementById('deliveryAddress').value : '(Pickup)',
-    items: orderLines,
-    subtotal: '$'+subtotal.toFixed(2),
-    deliveryFee: currentMethod==='delivery' ? '$'+Math.max(0,deliveryFee).toFixed(2) : '$0.00',
-    total: '$'+(subtotal + (currentMethod==='delivery' ? Math.max(0,deliveryFee) : 0)).toFixed(2),
-  };
-
+  if (currentMethod === 'delivery' && !document.getElementById('deliveryAddress').value) { alert('Please enter a delivery address.'); return; }
+  const subtotal = items.reduce(function(s,id){const p=PRODUCTS.find(function(x){return x.id===id;});return s+p.price*cart[id];},0);
+  const orderLines = items.map(function(id){const p=PRODUCTS.find(function(x){return x.id===id;});return p.name+' x'+cart[id]+' ($'+p.price+')';}).join(', ');
+  const payload = { name: name, phone: phone, date: date, time: time, notes: notes, method: currentMethod, address: currentMethod==='delivery' ? document.getElementById('deliveryAddress').value : '(Pickup)', items: orderLines, subtotal: '$'+subtotal.toFixed(2), deliveryFee: currentMethod==='delivery' ? '$'+Math.max(0,deliveryFee).toFixed(2) : '$0.00', total: '$'+(subtotal + (currentMethod==='delivery' ? Math.max(0,deliveryFee) : 0)).toFixed(2) };
   const btn = document.getElementById('checkoutBtn');
   btn.disabled = true; btn.textContent = 'Submitting...';
-
   fetch(SHEET_URL, { method:'POST', body: JSON.stringify(payload) })
-    .then(r => r.json())
-    .then(() => {
-      Object.keys(cart).forEach(k => delete cart[k]);
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      Object.keys(cart).forEach(function(k) { delete cart[k]; });
       renderCart();
-      ['fName','fPhone','fDate','fNotes'].forEach(id=>{document.getElementById(id).value='';});
+      ['fName','fPhone','fDate','fNotes'].forEach(function(id){document.getElementById(id).value='';});
       document.getElementById('fTime').value='12:00';
       document.getElementById('deliveryAddress').value='';
       document.getElementById('deliveryResult').innerHTML='';
       setMethod('pickup');
       btn.textContent = 'Place Order';
-      var toast = document.getElementById('toast');
+      const toast = document.getElementById('toast');
       toast.classList.add('show');
       setTimeout(function(){toast.classList.remove('show');},3800);
     })
-    .catch(() => { btn.disabled=false; btn.textContent='Place Order'; alert('Something went wrong. Please try again or contact us directly.'); });
+    .catch(function() { btn.disabled=false; btn.textContent='Place Order'; alert('Something went wrong. Please try again or contact us directly.'); });
 }
 
 (function(g){var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=function(){return h||(h=new Promise(function(f,n){a=m.createElement("script");e.set("libraries",[].concat(Array.from(r)).join(","));for(k in g)e.set(k.replace(/[A-Z]/g,function(t){return"_"+t[0].toLowerCase()}),g[k]);e.set("callback",c+".maps."+q);a.src="https://maps.googleapis.com/maps/api/js?"+e;d[q]=f;a.onerror=function(){h=n(new Error(p+" could not load."))};a.nonce=(m.querySelector("script[nonce]")||{}).nonce||"";m.head.appendChild(a)}))};d[l]||(d[l]=function(f){r.add(f);return u().then(function(){return d[l](f)})});return u().then(function(){return d[l]("places")})})({key: GOOGLE_MAPS_KEY, v: "weekly"}).then(function(){initMapsServices();});
 
 renderMenu();
 </script>
-
 </body>
 </html>
