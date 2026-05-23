@@ -3,296 +3,652 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HooRay Bakery — Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Admin — HooRay Bakery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#1a1410;--cream:#f8f4ee;--warm:#f0e8da;--gold:#b5843a;--muted:#7a6e62;--white:#fff;--green:#5a9a5a;--rose:#c96b50}
-body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh}
+:root{
+  --ink:#1a1410;
+  --cream:#f8f4ee;
+  --warm:#f0e8da;
+  --gold:#b5843a;
+  --gold-light:#d4a85a;
+  --muted:#7a6e62;
+  --red:#c0392b;
+  --green:#2e7d32;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;}
 
-/* LOGIN */
-.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.login-card{background:white;border:1px solid rgba(181,132,58,.2);padding:48px 40px;max-width:380px;width:100%;text-align:center}
-.login-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;color:var(--gold);margin-bottom:6px}
-.login-sub{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:32px}
-.login-card input{width:100%;border:1.5px solid #e8ddd6;padding:11px 14px;font-family:'Jost',sans-serif;font-size:.9rem;background:var(--cream);color:var(--ink);outline:none;margin-bottom:14px;text-align:center;letter-spacing:.1em}
-.login-card input:focus{border-color:var(--gold)}
-.login-btn{width:100%;background:var(--ink);color:white;border:none;padding:13px;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
-.login-btn:hover{background:var(--gold)}
-.login-error{color:var(--rose);font-size:.8rem;margin-top:10px;display:none}
+/* LOGIN SCREEN */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;background:var(--ink);
+}
+.login-box{
+  background:var(--cream);border-radius:12px;padding:48px 40px;
+  width:360px;text-align:center;
+}
+.login-box h1{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;margin-bottom:8px;}
+.login-box p{color:var(--muted);font-size:.85rem;margin-bottom:32px;letter-spacing:.05em;}
+.login-box input{
+  width:100%;padding:12px 16px;border:1px solid var(--warm);
+  border-radius:6px;font-family:'Jost',sans-serif;font-size:.9rem;
+  background:#fff;color:var(--ink);margin-bottom:16px;outline:none;
+  transition:border-color .2s;
+}
+.login-box input:focus{border-color:var(--gold);}
+.btn-login{
+  width:100%;padding:13px;background:var(--gold);color:#fff;
+  border:none;border-radius:6px;font-family:'Jost',sans-serif;
+  font-size:.85rem;letter-spacing:.12em;font-weight:500;cursor:pointer;
+  transition:background .2s;
+}
+.btn-login:hover{background:var(--gold-light);}
+.login-error{color:var(--red);font-size:.8rem;margin-top:8px;display:none;}
 
-/* ADMIN UI */
-.admin-ui{display:none}
-nav{background:white;border-bottom:1px solid rgba(181,132,58,.15);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-site-link{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none}
-.nav-site-link:hover{color:var(--gold)}
-.logout-btn{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif}
-.logout-btn:hover{color:var(--rose)}
+/* ADMIN APP */
+#admin-app{display:none;}
 
-.admin-inner{max-width:860px;margin:0 auto;padding:40px 24px 64px}
-.admin-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:6px}
-.admin-sub{font-size:.82rem;color:var(--muted);margin-bottom:36px}
+/* TOP BAR */
+.topbar{
+  background:var(--ink);color:var(--cream);
+  padding:0 32px;height:60px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:100;
+}
+.topbar-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:.05em;}
+.topbar-brand span{color:var(--gold-light);}
+.topbar-right{display:flex;align-items:center;gap:16px;}
+.topbar-right a{
+  color:var(--cream);text-decoration:none;font-size:.78rem;
+  letter-spacing:.1em;opacity:.7;transition:opacity .2s;
+}
+.topbar-right a:hover{opacity:1;}
+.btn-logout{
+  background:transparent;border:1px solid rgba(255,255,255,.3);
+  color:var(--cream);padding:6px 14px;border-radius:4px;
+  font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.1em;
+  cursor:pointer;transition:all .2s;
+}
+.btn-logout:hover{border-color:var(--gold-light);color:var(--gold-light);}
 
-/* CARDS */
-.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:640px){.settings-grid{grid-template-columns:1fr}}
-.card{background:white;border:1px solid rgba(181,132,58,.15);padding:28px}
-.card-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:4px}
-.card-sub{font-size:.76rem;color:var(--muted);margin-bottom:22px}
-.card.full{grid-column:1/-1}
+/* MAIN LAYOUT */
+.admin-main{max-width:1100px;margin:0 auto;padding:36px 24px;}
 
-/* TOGGLE */
-.toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.toggle-label{font-size:.85rem;font-weight:400}
-.toggle-desc{font-size:.74rem;color:var(--muted);margin-top:2px}
-.toggle{position:relative;width:50px;height:27px;flex-shrink:0}
-.toggle input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;background:#ddd;cursor:pointer;border-radius:27px;transition:.3s}
-.toggle-slider::before{content:'';position:absolute;width:21px;height:21px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s}
-input:checked+.toggle-slider{background:var(--green)}
-input:checked+.toggle-slider::before{transform:translateX(23px)}
+/* PAGE HEADER */
+.page-header{margin-bottom:32px;}
+.page-header h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:4px;}
+.page-header p{color:var(--muted);font-size:.85rem;}
 
-/* STATUS BADGE */
-.status-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:2px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:20px}
-.status-badge.open{background:rgba(90,154,90,.12);color:var(--green)}
-.status-badge.closed{background:rgba(201,107,80,.12);color:var(--rose)}
-.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+/* STATS BAR */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;
+}
+.stat-card{
+  background:#fff;border-radius:10px;padding:20px 24px;
+  border:1px solid var(--warm);
+}
+.stat-card .stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:var(--gold);}
+.stat-card .stat-label{font-size:.75rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
 
-/* FORM ELEMENTS */
-.field{margin-bottom:16px}
-.field label{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;border:1.5px solid #e8ddd6;padding:9px 12px;font-family:'Jost',sans-serif;font-size:.85rem;background:var(--cream);color:var(--ink);outline:none;transition:border-color .2s;border-radius:0}
-.field input:focus,.field textarea:focus{border-color:var(--gold);background:white}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field-hint{font-size:.72rem;color:var(--muted);margin-top:4px}
+/* SECTION */
+.section{background:#fff;border-radius:12px;border:1px solid var(--warm);margin-bottom:24px;overflow:hidden;}
+.section-header{
+  padding:20px 24px;border-bottom:1px solid var(--warm);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.section-header h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;}
+.btn-add{
+  background:var(--gold);color:#fff;border:none;border-radius:6px;
+  padding:9px 18px;font-family:'Jost',sans-serif;font-size:.78rem;
+  letter-spacing:.1em;font-weight:500;cursor:pointer;transition:background .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.btn-add:hover{background:var(--gold-light);}
+.btn-add svg{width:14px;height:14px;}
 
-/* BAKE DAYS */
-.day-picker{display:flex;gap:8px;flex-wrap:wrap}
-.day-btn{border:1.5px solid #e8ddd6;background:white;color:var(--muted);padding:7px 14px;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all .15s}
-.day-btn.selected{background:var(--ink);color:white;border-color:var(--ink)}
+/* PRODUCT TABLE */
+.product-table{width:100%;border-collapse:collapse;}
+.product-table th{
+  padding:10px 16px;text-align:left;font-size:.7rem;letter-spacing:.12em;
+  color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--warm);
+  font-weight:500;
+}
+.product-table td{
+  padding:14px 16px;border-bottom:1px solid var(--warm);font-size:.88rem;
+  vertical-align:middle;
+}
+.product-table tr:last-child td{border-bottom:none;}
+.product-table tr:hover td{background:var(--cream);}
 
-/* SAVE BUTTON */
-.save-btn{width:100%;background:var(--gold);color:white;border:none;padding:14px;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;margin-top:28px;transition:background .2s}
-.save-btn:hover{background:var(--ink)}
-.save-confirm{text-align:center;font-size:.8rem;color:var(--green);margin-top:12px;display:none}
+.prod-img{
+  width:52px;height:52px;border-radius:8px;object-fit:cover;
+  border:1px solid var(--warm);background:var(--warm);
+}
+.prod-name{font-weight:500;margin-bottom:2px;}
+.prod-desc{font-size:.78rem;color:var(--muted);max-width:280px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.badge{
+  display:inline-block;padding:2px 7px;border-radius:3px;
+  font-size:.65rem;letter-spacing:.08em;font-weight:500;margin-right:3px;
+  text-transform:uppercase;border:1px solid;
+}
+.badge-cat{background:var(--warm);color:var(--muted);border-color:var(--warm);}
+.price-cell{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-weight:500;}
 
-/* HOURS PREVIEW */
-.hours-preview{background:var(--warm);padding:14px 16px;font-size:.82rem;line-height:1.8;color:var(--ink);margin-top:14px}
-.hours-preview strong{font-weight:500}
+/* STATUS TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:8px;}
+.toggle{
+  position:relative;display:inline-block;width:38px;height:20px;
+}
+.toggle input{opacity:0;width:0;height:0;}
+.slider{
+  position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;
+  background:#ccc;border-radius:20px;transition:.3s;
+}
+.slider:before{
+  position:absolute;content:'';height:14px;width:14px;
+  left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;
+}
+.toggle input:checked+.slider{background:var(--green);}
+.toggle input:checked+.slider:before{transform:translateX(18px);}
+.toggle-label{font-size:.75rem;color:var(--muted);}
+
+/* ROW ACTIONS */
+.row-actions{display:flex;gap:8px;}
+.btn-edit,.btn-del{
+  padding:6px 12px;border-radius:5px;font-family:'Jost',sans-serif;
+  font-size:.75rem;letter-spacing:.08em;cursor:pointer;border:1px solid;
+  transition:all .2s;font-weight:500;
+}
+.btn-edit{background:#fff;color:var(--gold);border-color:var(--gold);}
+.btn-edit:hover{background:var(--gold);color:#fff;}
+.btn-del{background:#fff;color:var(--red);border-color:var(--red);}
+.btn-del:hover{background:var(--red);color:#fff;}
+
+/* MODAL OVERLAY */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:1000;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:#fff;border-radius:14px;padding:36px 32px;
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:24px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-group label{font-size:.75rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;font-weight:500;}
+.form-group input,.form-group select,.form-group textarea{
+  padding:10px 12px;border:1px solid var(--warm);border-radius:6px;
+  font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);
+  background:#fff;outline:none;transition:border-color .2s;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group textarea{resize:vertical;min-height:70px;}
+.img-preview-wrap{margin-top:6px;}
+.img-preview{
+  width:80px;height:80px;border-radius:8px;object-fit:cover;
+  border:1px solid var(--warm);background:var(--warm);display:block;
+}
+.tags-hint{font-size:.72rem;color:var(--muted);margin-top:4px;}
+.modal-actions{display:flex;gap:12px;margin-top:28px;justify-content:flex-end;}
+.btn-cancel{
+  padding:10px 20px;background:#fff;border:1px solid var(--warm);
+  border-radius:6px;font-family:'Jost',sans-serif;font-size:.82rem;
+  cursor:pointer;color:var(--muted);transition:all .2s;
+}
+.btn-cancel:hover{border-color:var(--muted);}
+.btn-save{
+  padding:10px 24px;background:var(--gold);color:#fff;border:none;
+  border-radius:6px;font-family:'Jost',sans-serif;font-size:.82rem;
+  letter-spacing:.08em;cursor:pointer;transition:background .2s;font-weight:500;
+}
+.btn-save:hover{background:var(--gold-light);}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:28px;right:28px;background:var(--ink);color:var(--cream);
+  padding:12px 20px;border-radius:8px;font-size:.82rem;letter-spacing:.05em;
+  opacity:0;transition:opacity .3s;z-index:9999;pointer-events:none;
+}
+.toast.show{opacity:1;}
+
+/* EMPTY STATE */
+.empty-state{padding:48px;text-align:center;color:var(--muted);}
+.empty-state svg{width:40px;height:40px;margin-bottom:12px;opacity:.4;}
+.empty-state p{font-size:.88rem;}
+
+/* DRAG HANDLE */
+.drag-handle{cursor:grab;opacity:.4;padding:0 4px;}
+.drag-handle:hover{opacity:.8;}
+
+/* PUBLISH BANNER */
+.publish-banner{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:#fff;border-radius:10px;padding:20px 24px;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.publish-banner .banner-text h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:2px;}
+.publish-banner .banner-text p{font-size:.78rem;opacity:.85;}
+.btn-publish{
+  background:#fff;color:var(--gold);border:none;border-radius:6px;
+  padding:10px 22px;font-family:'Jost',sans-serif;font-size:.78rem;
+  letter-spacing:.1em;font-weight:600;cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.btn-publish:hover{background:var(--cream);}
+.publish-status{font-size:.72rem;opacity:.8;margin-top:4px;}
+
+/* CATEGORY FILTER TABS */
+.cat-tabs{display:flex;gap:8px;padding:16px 24px;border-bottom:1px solid var(--warm);flex-wrap:wrap;}
+.cat-tab{
+  padding:5px 14px;border-radius:20px;font-size:.75rem;letter-spacing:.08em;
+  cursor:pointer;border:1px solid var(--warm);background:#fff;color:var(--muted);
+  transition:all .2s;font-weight:500;
+}
+.cat-tab.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+.cat-tab:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+
+@media(max-width:768px){
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .form-grid{grid-template-columns:1fr;}
+  .topbar{padding:0 16px;}
+  .admin-main{padding:24px 16px;}
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-card">
-    <div class="login-logo">HooRay Bakery</div>
-    <div class="login-sub">Admin Panel</div>
-    <input type="password" id="pwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">Sign In</button>
-    <div class="login-error" id="loginError">Incorrect password</div>
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>HooRay Bakery</h1>
+    <p>ADMIN PORTAL</p>
+    <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password">
+    <button class="btn-login" id="btn-login">SIGN IN</button>
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
   </div>
 </div>
 
-<!-- ADMIN UI -->
-<div class="admin-ui" id="adminUI">
-<nav>
-  <div class="nav-logo">HooRay Admin</div>
-  <div class="nav-right">
-    <a href="index.html" target="_blank" class="nav-site-link">View Site ↗</a>
-    <a href="order.html" target="_blank" class="nav-site-link">View Order Page ↗</a>
-    <button class="logout-btn" onclick="logout()">Sign Out</button>
-  </div>
-</nav>
-
-<div class="admin-inner">
-  <div class="admin-title">Store Settings</div>
-  <div class="admin-sub">Changes take effect immediately on your order page.</div>
-
-  <div class="settings-grid">
-
-    <!-- STORE STATUS -->
-    <div class="card">
-      <div class="card-title">Store Status</div>
-      <div class="card-sub">Open or close your store to new orders</div>
-      <div id="statusBadge" class="status-badge open"><span class="status-dot"></span> Open for Orders</div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Accept Orders</div>
-          <div class="toggle-desc">Turn off to show "We're closed" page</div>
-        </div>
-        <label class="toggle"><input type="checkbox" id="storeOpen" checked onchange="updateStatus()"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="field">
-        <label>Notice Banner (optional)</label>
-        <input type="text" id="noticeText" placeholder="e.g. Closed this weekend — back Monday!">
-        <div class="field-hint">Shows a gold banner at the top of the order page</div>
-      </div>
+<!-- ADMIN APP -->
+<div id="admin-app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-brand">HooRay <span>Admin</span></div>
+    <div class="topbar-right">
+      <a href="/order.html" target="_blank">↗ View Order Page</a>
+      <a href="/" target="_blank">↗ View Site</a>
+      <button class="btn-logout" id="btn-logout">LOG OUT</button>
     </div>
-
-    <!-- BAKE DAYS -->
-    <div class="card">
-      <div class="card-title">Bake Schedule</div>
-      <div class="card-sub">Days you bake each week</div>
-      <div class="field">
-        <label>Bake Days</label>
-        <div class="day-picker" id="dayPicker">
-          <button class="day-btn" data-day="0" onclick="toggleDay(0)">Sun</button>
-          <button class="day-btn" data-day="1" onclick="toggleDay(1)">Mon</button>
-          <button class="day-btn" data-day="2" onclick="toggleDay(2)">Tue</button>
-          <button class="day-btn" data-day="3" onclick="toggleDay(3)">Wed</button>
-          <button class="day-btn" data-day="4" onclick="toggleDay(4)">Thu</button>
-          <button class="day-btn" data-day="5" onclick="toggleDay(5)">Fri</button>
-          <button class="day-btn" data-day="6" onclick="toggleDay(6)">Sat</button>
-        </div>
-        <div class="field-hint" style="margin-top:8px">Selected days shown to customers as bake days</div>
-      </div>
-      <div class="field">
-        <label>Min Hours Advance Notice</label>
-        <input type="number" id="minHours" value="48" min="0" max="168">
-        <div class="field-hint">Customers can't order for less than this many hours from now</div>
-      </div>
-    </div>
-
-    <!-- DELIVERY -->
-    <div class="card full">
-      <div class="card-title">Delivery Settings</div>
-      <div class="card-sub">Distance-based delivery fee from your address</div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Enable Delivery</div>
-          <div class="toggle-desc">Show delivery option on order page</div>
-        </div>
-        <label class="toggle"><input type="checkbox" id="deliveryEnabled" checked><span class="toggle-slider"></span></label>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Rate per Mile ($)</label>
-          <input type="number" id="ratePerMile" value="1.00" min="0" step="0.25">
-        </div>
-        <div class="field">
-          <label>Max Delivery Distance (miles)</label>
-          <input type="number" id="maxMiles" value="20" min="1" max="50">
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Free Delivery Minimum ($)</label>
-          <input type="number" id="freeDeliveryMin" value="20" min="0">
-          <div class="field-hint">Orders over this amount get free delivery</div>
-        </div>
-        <div class="field">
-          <label>Your Store Address</label>
-          <input type="text" id="storeAddr" value="7725 Gateway, Irvine, CA 92618">
-        </div>
-      </div>
-      <div class="hours-preview" id="deliveryPreview">
-        📏 Max range: <strong>20 miles</strong><br>
-        💵 Fee: <strong>$1.00/mile</strong> (e.g. 5 miles = $5.00)<br>
-        🎉 Free delivery on orders over <strong>$20</strong>
-      </div>
-    </div>
-
   </div>
 
-  <button class="save-btn" onclick="saveSettings()">Save All Settings</button>
-  <div class="save-confirm" id="saveConfirm">✓ Settings saved! Changes are live on your order page.</div>
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="page-header">
+      <h2>Product Management</h2>
+      <p>Add, edit or remove products. Changes save instantly and appear on the order page.</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-total">0</div>
+        <div class="stat-label">Total Products</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-active">0</div>
+        <div class="stat-label">Available Now</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-hidden">0</div>
+        <div class="stat-label">Hidden</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-cats">0</div>
+        <div class="stat-label">Categories</div>
+      </div>
+    </div>
+
+    <!-- PUBLISH BANNER -->
+    <div class="publish-banner">
+      <div class="banner-text">
+        <h4>Unsaved Changes</h4>
+        <p id="publish-status">Your edits are saved locally. Changes appear on the order page automatically.</p>
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <div class="section">
+      <div class="section-header">
+        <h3>Menu Items</h3>
+        <button class="btn-add" id="btn-add-product">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          ADD PRODUCT
+        </button>
+      </div>
+
+      <!-- CATEGORY FILTER -->
+      <div class="cat-tabs" id="cat-tabs">
+        <div class="cat-tab active" data-cat="all">All</div>
+      </div>
+
+      <!-- TABLE -->
+      <table class="product-table" id="product-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="product-tbody">
+          <tr><td colspan="6"><div class="empty-state"><p>No products yet. Click "Add Product" to get started.</p></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3 id="modal-title">Add Product</h3>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Product Name</label>
+        <input type="text" id="f-name" placeholder="e.g. Classic Milk Loaf">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="f-cat">
+          <option value="loaves">Loaves</option>
+          <option value="cookies">Cookies</option>
+          <option value="pastries">Pastries</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Price ($)</label>
+        <input type="number" id="f-price" placeholder="10" min="0" step="0.5">
+      </div>
+      <div class="form-group full">
+        <label>Description</label>
+        <textarea id="f-desc" placeholder="Short description of this product..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label>Photo URL</label>
+        <input type="url" id="f-img" placeholder="https://... or /images/product.jpg">
+        <div class="img-preview-wrap">
+          <img class="img-preview" id="f-img-preview" src="" alt="">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label>Tags <span class="tags-hint">(comma separated, e.g. SIGNATURE, BESTSELLER, SEASONAL)</span></label>
+        <input type="text" id="f-tags" placeholder="SIGNATURE, BESTSELLER">
+      </div>
+      <div class="form-group">
+        <label>Available</label>
+        <select id="f-avail">
+          <option value="true">Yes — Show on order page</option>
+          <option value="false">No — Hide from customers</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" id="f-sort" placeholder="0" min="0">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btn-cancel">Cancel</button>
+      <button class="btn-save" id="btn-save">SAVE PRODUCT</button>
+    </div>
+  </div>
 </div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
-const PASSWORD = 'hooray0520';
+// ─── DEFAULT PRODUCTS DATA ───────────────────────────────────────────────────
+const DEFAULT_PRODUCTS = [
+  {id:'p1',name:'Classic Milk Loaf',cat:'loaves',price:10,desc:'Pillowy soft Japanese-style milk bread. Perfectly golden crust with a feather-light crumb.',img:'images/classic.jpg',tags:['SIGNATURE','BESTSELLER'],available:true,sort:1},
+  {id:'p2',name:'Matcha Milk Loaf',cat:'loaves',price:12,desc:'Premium ceremonial matcha swirled into our classic milk bread dough. Earthy, delicate, and beautiful.',img:'images/matcha.jpg',tags:['SEASONAL'],available:true,sort:2},
+  {id:'p3',name:'Earl Grey Tea Loaf',cat:'loaves',price:12,desc:'Fragrant Earl Grey infused into every layer. Subtle floral notes with a tender crumb.',img:'images/classic.jpg',tags:['SEASONAL','FAN FAV'],available:true,sort:3},
+  {id:'p4',name:'Butter Cookies',cat:'cookies',price:10,desc:'Classic melt-in-your-mouth butter cookies, delicately crisp and rich. Baked in small batches.',img:'images/cookies.jpg',tags:['CLASSIC'],available:true,sort:4},
+  {id:'p5',name:'Jenny Cookies (Small)',cat:'cookies',price:6,desc:'Our beloved Jenny cookies in a petite gift box. Perfect for gifting or a sweet treat.',img:'images/cookies.jpg',tags:[],available:true,sort:5},
+  {id:'p6',name:'Jenny Cookies (Large)',cat:'cookies',price:10,desc:'The full Jenny cookie experience — a generous box of our signature piped cookies.',img:'images/cookies.jpg',tags:['POPULAR'],available:true,sort:6},
+  {id:'p7',name:'Canele (Single)',cat:'pastries',price:8,desc:'Classic Bordeaux-style canele. Mahogany crust, custardy center, perfumed with vanilla and rum.',img:'images/market.jpg',tags:['FRENCH'],available:true,sort:7},
+  {id:'p8',name:'Canele (Box of 6)',cat:'pastries',price:15,desc:'Six caneles presented in a beautiful gift box. A stunning treat for any occasion.',img:'images/market.jpg',tags:['GIFT','FRENCH'],available:true,sort:8}
+];
 
-function doLogin() {
-  const pw = document.getElementById('pwInput').value;
-  if (pw === PASSWORD) {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminUI').style.display = 'block';
-    loadSettings();
+const STORAGE_KEY = 'hooray_products';
+const ADMIN_PW = 'hooray2024';
+
+let products = [];
+let editingId = null;
+let filterCat = 'all';
+
+// ─── STORAGE ─────────────────────────────────────────────────────────────────
+function loadProducts(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw){
+    try{ products = JSON.parse(raw); }
+    catch(e){ products = [...DEFAULT_PRODUCTS]; }
   } else {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('pwInput').value = '';
+    products = [...DEFAULT_PRODUCTS];
+    saveProducts();
   }
 }
-
-function logout() {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('adminUI').style.display = 'none';
-  document.getElementById('pwInput').value = '';
+function saveProducts(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
 }
 
-let selectedDays = [3, 6]; // Wed, Sat
+// ─── LOGIN ────────────────────────────────────────────────────────────────────
+function checkLogin(){
+  return sessionStorage.getItem('admin_auth') === 'yes';
+}
+function doLogin(){
+  const pw = document.getElementById('pw-input').value;
+  if(pw === ADMIN_PW){
+    sessionStorage.setItem('admin_auth','yes');
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-app').style.display='block';
+    initAdmin();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+  }
+}
+document.getElementById('btn-login').addEventListener('click', doLogin);
+document.getElementById('pw-input').addEventListener('keydown', function(e){
+  if(e.key==='Enter') doLogin();
+});
+document.getElementById('btn-logout').addEventListener('click', function(){
+  sessionStorage.removeItem('admin_auth');
+  location.reload();
+});
 
-function toggleDay(day) {
-  const idx = selectedDays.indexOf(day);
-  if (idx > -1) selectedDays.splice(idx, 1);
-  else selectedDays.push(day);
-  renderDays();
+// Auto-login if session active
+if(checkLogin()){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-app').style.display='block';
+  loadProducts();
+  initAdmin();
 }
 
-function renderDays() {
-  document.querySelectorAll('.day-btn').forEach(btn => {
-    const d = parseInt(btn.dataset.day);
-    btn.classList.toggle('selected', selectedDays.includes(d));
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+function initAdmin(){
+  loadProducts();
+  renderCatTabs();
+  renderTable();
+  updateStats();
+}
+
+// ─── STATS ────────────────────────────────────────────────────────────────────
+function updateStats(){
+  const total = products.length;
+  const active = products.filter(p=>p.available).length;
+  const hidden = total - active;
+  const cats = [...new Set(products.map(p=>p.cat))].length;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-active').textContent = active;
+  document.getElementById('stat-hidden').textContent = hidden;
+  document.getElementById('stat-cats').textContent = cats;
+}
+
+// ─── CAT TABS ─────────────────────────────────────────────────────────────────
+function renderCatTabs(){
+  const cats = ['all',...new Set(products.map(p=>p.cat))];
+  const tabsEl = document.getElementById('cat-tabs');
+  tabsEl.innerHTML = '';
+  cats.forEach(c=>{
+    const div = document.createElement('div');
+    div.className = 'cat-tab' + (filterCat===c?' active':'');
+    div.dataset.cat = c;
+    div.textContent = c==='all'?'All':c.charAt(0).toUpperCase()+c.slice(1);
+    div.addEventListener('click',function(){
+      filterCat = this.dataset.cat;
+      renderCatTabs();
+      renderTable();
+    });
+    tabsEl.appendChild(div);
   });
 }
 
-function updateStatus() {
-  const isOpen = document.getElementById('storeOpen').checked;
-  const badge = document.getElementById('statusBadge');
-  badge.className = 'status-badge ' + (isOpen ? 'open' : 'closed');
-  badge.innerHTML = `<span class="status-dot"></span> ${isOpen ? 'Open for Orders' : 'Closed'}`;
+// ─── TABLE ────────────────────────────────────────────────────────────────────
+function renderTable(){
+  const tbody = document.getElementById('product-tbody');
+  let list = [...products].sort((a,b)=>(a.sort||0)-(b.sort||0));
+  if(filterCat!=='all') list = list.filter(p=>p.cat===filterCat);
+  if(!list.length){
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><p>No products in this category.</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(p=>{
+    const tags = (p.tags||[]).map(t=>'<span class="badge badge-cat">'+t+'</span>').join('');
+    const avail = p.available!==false;
+    const imgSrc = p.img || '';
+    return '<tr data-id="'+p.id+'">' +
+      '<td class="drag-handle">&#9776;</td>' +
+      '<td><div style="display:flex;align-items:center;gap:12px">' +
+        '<img class="prod-img" src="'+imgSrc+'" alt="" onerror="this.style.opacity=.3">' +
+        '<div><div class="prod-name">'+escHtml(p.name)+'</div>' +
+        '<div class="prod-desc">'+escHtml(p.desc||'')+'</div>' +
+        (tags?'<div style="margin-top:4px">'+tags+'</div>':'') +
+        '</div></div></td>' +
+      '<td><span class="badge badge-cat">'+escHtml(p.cat)+'</span></td>' +
+      '<td class="price-cell">$'+Number(p.price).toFixed(0)+'</td>' +
+      '<td><label class="toggle"><input type="checkbox" '+(avail?'checked':'')+' data-toggle="'+p.id+'"><span class="slider"></span></label></td>' +
+      '<td><div class="row-actions">' +
+        '<button class="btn-edit" data-edit="'+p.id+'">Edit</button>' +
+        '<button class="btn-del" data-del="'+p.id+'">Delete</button>' +
+        '</div></td>' +
+      '</tr>';
+  }).join('');
+
+  // Toggle availability
+  tbody.querySelectorAll('[data-toggle]').forEach(cb=>{
+    cb.addEventListener('change',function(){
+      const id = this.dataset.toggle;
+      const prod = products.find(p=>p.id===id);
+      if(prod){ prod.available = this.checked; saveProducts(); updateStats(); showToast(prod.name+' '+(this.checked?'shown':'hidden')); }
+    });
+  });
+  // Edit
+  tbody.querySelectorAll('[data-edit]').forEach(btn=>{
+    btn.addEventListener('click',function(){ openModal(this.dataset.edit); });
+  });
+  // Delete
+  tbody.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const id = this.dataset.del;
+      const prod = products.find(p=>p.id===id);
+      if(prod && confirm('Delete "'+prod.name+'"? This cannot be undone.')){
+        products = products.filter(p=>p.id!==id);
+        saveProducts(); renderCatTabs(); renderTable(); updateStats();
+        showToast('"'+prod.name+'" deleted');
+      }
+    });
+  });
 }
 
-function updateDeliveryPreview() {
-  const rate = parseFloat(document.getElementById('ratePerMile').value) || 1;
-  const max = parseInt(document.getElementById('maxMiles').value) || 20;
-  const freeMin = parseFloat(document.getElementById('freeDeliveryMin').value) || 20;
-  document.getElementById('deliveryPreview').innerHTML =
-    `📏 Max range: <strong>${max} miles</strong><br>
-     💵 Fee: <strong>$${rate.toFixed(2)}/mile</strong> (e.g. 5 miles = $${(5*rate).toFixed(2)})<br>
-     🎉 Free delivery on orders over <strong>$${freeMin}</strong>`;
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function openModal(id){
+  editingId = id || null;
+  const modal = document.getElementById('modal');
+  const prod = id ? products.find(p=>p.id===id) : null;
+  document.getElementById('modal-title').textContent = id ? 'Edit Product' : 'Add Product';
+  document.getElementById('f-name').value = prod ? prod.name : '';
+  document.getElementById('f-cat').value = prod ? prod.cat : 'loaves';
+  document.getElementById('f-price').value = prod ? prod.price : '';
+  document.getElementById('f-desc').value = prod ? (prod.desc||'') : '';
+  document.getElementById('f-img').value = prod ? (prod.img||'') : '';
+  document.getElementById('f-tags').value = prod ? (prod.tags||[]).join(', ') : '';
+  document.getElementById('f-avail').value = prod ? String(prod.available!==false) : 'true';
+  document.getElementById('f-sort').value = prod ? (prod.sort||0) : products.length+1;
+  updateImgPreview();
+  modal.classList.add('open');
+  document.getElementById('f-name').focus();
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  editingId = null;
+}
+document.getElementById('btn-cancel').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.getElementById('btn-add-product').addEventListener('click', function(){ openModal(null); });
+
+// Image preview
+document.getElementById('f-img').addEventListener('input', updateImgPreview);
+function updateImgPreview(){
+  const url = document.getElementById('f-img').value.trim();
+  const preview = document.getElementById('f-img-preview');
+  preview.src = url || '';
+  preview.style.display = url ? 'block' : 'none';
 }
 
-['ratePerMile','maxMiles','freeDeliveryMin'].forEach(id => {
-  document.getElementById(id)?.addEventListener('input', updateDeliveryPreview);
+// Save
+document.getElementById('btn-save').addEventListener('click', function(){
+  const name = document.getElementById('f-name').value.trim();
+  const price = parseFloat(document.getElementById('f-price').value);
+  if(!name){ alert('Please enter a product name.'); return; }
+  if(isNaN(price)||price<0){ alert('Please enter a valid price.'); return; }
+  const tagsRaw = document.getElementById('f-tags').value;
+  const tags = tagsRaw ? tagsRaw.split(',').map(t=>t.trim().toUpperCase()).filter(Boolean) : [];
+  const prodData = {
+    id: editingId || 'p'+Date.now(),
+    name, cat: document.getElementById('f-cat').value,
+    price, desc: document.getElementById('f-desc').value.trim(),
+    img: document.getElementById('f-img').value.trim(),
+    tags, available: document.getElementById('f-avail').value==='true',
+    sort: parseInt(document.getElementById('f-sort').value)||0
+  };
+  if(editingId){
+    const idx = products.findIndex(p=>p.id===editingId);
+    if(idx>-1) products[idx] = prodData;
+  } else {
+    products.push(prodData);
+  }
+  saveProducts(); closeModal(); renderCatTabs(); renderTable(); updateStats();
+  showToast(editingId?'"'+name+'" updated':'"'+name+'" added');
 });
 
-function saveSettings() {
-  const settings = {
-    storeOpen: document.getElementById('storeOpen').checked,
-    noticeText: document.getElementById('noticeText').value.trim(),
-    deliveryEnabled: document.getElementById('deliveryEnabled').checked,
-    ratePerMile: parseFloat(document.getElementById('ratePerMile').value) || 1,
-    maxMiles: parseInt(document.getElementById('maxMiles').value) || 20,
-    freeDeliveryMin: parseFloat(document.getElementById('freeDeliveryMin').value) || 20,
-    bakeDays: selectedDays,
-    minHours: parseInt(document.getElementById('minHours').value) || 48,
-    storeAddress: document.getElementById('storeAddr').value.trim(),
-  };
-  localStorage.setItem('hooray_settings', JSON.stringify(settings));
-  const conf = document.getElementById('saveConfirm');
-  conf.style.display = 'block';
-  setTimeout(() => conf.style.display = 'none', 3000);
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-function loadSettings() {
-  try {
-    const s = JSON.parse(localStorage.getItem('hooray_settings') || '{}');
-    if (s.storeOpen !== undefined) { document.getElementById('storeOpen').checked = s.storeOpen; updateStatus(); }
-    if (s.noticeText) document.getElementById('noticeText').value = s.noticeText;
-    if (s.deliveryEnabled !== undefined) document.getElementById('deliveryEnabled').checked = s.deliveryEnabled;
-    if (s.ratePerMile) document.getElementById('ratePerMile').value = s.ratePerMile;
-    if (s.maxMiles) document.getElementById('maxMiles').value = s.maxMiles;
-    if (s.freeDeliveryMin) document.getElementById('freeDeliveryMin').value = s.freeDeliveryMin;
-    if (s.bakeDays) { selectedDays = s.bakeDays; renderDays(); }
-    if (s.minHours) document.getElementById('minHours').value = s.minHours;
-    if (s.storeAddress) document.getElementById('storeAddr').value = s.storeAddress;
-    updateDeliveryPreview();
-  } catch(e) {}
-  renderDays();
+// ─── UTILS ────────────────────────────────────────────────────────────────────
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
 </body>
