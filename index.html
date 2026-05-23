@@ -9,18 +9,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#1a1410;
-  --cream:#f8f4ee;
-  --warm:#f0e8da;
-  --gold:#b5843a;
-  --gold-light:#d4a85a;h
-  --muted:#7a6e62;
-  --white:#ffffff;
+--ink:#1a1410;
+--cream:#f8f4ee;
+--warm:#f0e8da;
+--gold:#b5843a;
+--gold-light:#d4a85a;
+--muted:#7a6e62;
+--white:#ffffff;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s}
 nav.scrolled{background:rgba(248,244,238,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(181,132,58,.15)}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);text-decoration:none;letter-spacing:.04em}
@@ -28,12 +28,12 @@ nav.scrolled{background:rgba(248,244,238,0.92);backdrop-filter:blur(12px);border
 .nav-links{display:flex;align-items:center;gap:36px}
 .nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.75;transition:opacity .2s}
 .nav-links a:hover{opacity:1}
-.nav-order{background:var(--ink);color:var(--cream);padding:9px 22px;border-radius:2px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s;opacity:1!important}
-.nav-order:hover{background:var(--gold)}
+.nav-order{background:var(--ink);color:var(--cream)!important;padding:9px 22px;border-radius:2px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s;opacity:1!important}
+.nav-order:hover{background:var(--gold)!important}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .nav-hamburger span{width:24px;height:1.5px;background:var(--ink);display:block;transition:all .3s}
 
-/* ── HERO ── */
+/* HERO */
 .hero{height:100vh;min-height:640px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
 .hero-img{position:absolute;inset:0;background:url('hero.jpg') center/cover no-repeat;transform:scale(1.05);transition:transform 8s ease-out}
 .hero-img.loaded{transform:scale(1)}
@@ -52,20 +52,20 @@ nav.scrolled{background:rgba(248,244,238,0.92);backdrop-filter:blur(12px);border
 .hero-scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:rgba(255,255,255,.6);animation:scrollline 2s ease-in-out infinite}
 @keyframes scrollline{0%{top:-100%}100%{top:100%}}
 
-/* ── MARQUEE ── */
+/* MARQUEE */
 .marquee-wrap{background:var(--gold);padding:12px 0;overflow:hidden}
 .marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite}
 .marquee-item{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--white);padding:0 32px;opacity:.9}
 .marquee-dot{color:rgba(255,255,255,.5);padding:0 8px}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 section{padding:96px 48px}
 .section-eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300;line-height:1.15;color:var(--ink)}
 .section-title em{font-style:italic}
 
-/* ── ABOUT / STORY ── */
+/* STORY */
 .story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
 .story-img-wrap{position:relative}
 .story-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
@@ -75,7 +75,7 @@ section{padding:96px 48px}
 .story-text p + p{margin-top:16px}
 .story-signature{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-style:italic;color:var(--gold);margin-top:32px}
 
-/* ── PRODUCTS ── */
+/* PRODUCTS */
 .products-section{background:var(--warm);padding:96px 48px}
 .products-header{max-width:1200px;margin:0 auto 56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
 .products-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -96,7 +96,7 @@ section{padding:96px 48px}
 .btn-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);color:var(--ink);padding:13px 36px;text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:all .2s}
 .btn-outline:hover{background:var(--ink);color:var(--cream)}
 
-/* ── PROCESS ── */
+/* PROCESS */
 .process-section{padding:96px 48px;background:var(--ink);color:var(--cream)}
 .process-inner{max-width:1200px;margin:0 auto}
 .process-inner .section-eyebrow{color:var(--gold-light)}
@@ -110,25 +110,21 @@ section{padding:96px 48px}
 .process-label h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--white)}
 .process-label p{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.5}
 
-/* ── VALUES ── */
+/* VALUES */
 .values-section{padding:96px 48px}
 .values-inner{max-width:1200px;margin:0 auto}
 .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;margin-top:56px}
-.value-item{}
 .value-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;font-style:italic;color:var(--gold);opacity:.3;line-height:1;margin-bottom:16px}
 .value-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--ink);margin-bottom:10px}
 .value-desc{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.75}
 
-/* ── INSTAGRAM ── */
+/* INSTAGRAM */
 .instagram-section{padding:96px 48px;background:var(--warm)}
 .instagram-inner{max-width:1200px;margin:0 auto;text-align:center}
 .instagram-handle{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;margin-top:12px;margin-bottom:48px;border-bottom:1px solid var(--gold);padding-bottom:2px}
 .instagram-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.instagram-grid a{aspect-ratio:1;overflow:hidden;display:block}.instagram-grid a img{width:100%;height:100%;object-fit:cover;object-position:left center;display:block;transition:transform .4s ease}.instagram-grid a:hover img{transform:scale(1.05)}
-.insta-placeholder{aspect-ratio:1;background:var(--warm);border:1px dashed rgba(181,132,58,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--gold);opacity:.5}
-.insta-placeholder svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5}
-.insta-placeholder span{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
-/* ── PICKUP / INFO ── */
+/* INFO */
 .info-section{padding:96px 48px;border-top:1px solid rgba(181,132,58,.2)}
 .info-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .info-block h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--ink);margin-bottom:20px}
@@ -138,7 +134,7 @@ section{padding:96px 48px}
 .info-row-label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);min-width:80px;padding-top:2px}
 .info-row-val{font-size:.88rem;font-weight:300;color:var(--ink);line-height:1.6}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{background:var(--ink);color:var(--cream);padding:56px 48px 32px}
 .footer-inner{max-width:1200px;margin:0 auto}
 .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
@@ -153,7 +149,7 @@ footer{background:var(--ink);color:var(--cream);padding:56px 48px 32px}
 .footer-social a{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
 .footer-social a:hover{color:var(--gold-light)}
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:none}
 .reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .8s ease,transform .8s ease}
@@ -161,27 +157,27 @@ footer{background:var(--ink);color:var(--cream);padding:56px 48px 32px}
 .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .8s ease,transform .8s ease}
 .reveal-right.visible{opacity:1;transform:none}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:900px){
-  nav{padding:16px 24px}
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:32px;z-index:99}
-  .nav-links.open a{font-size:1.1rem}
-  section,footer{padding:64px 24px}
-  .hero-content{padding:0 24px 56px}
-  .hero-scroll{right:24px}
-  .story{grid-template-columns:1fr;gap:40px}
-  .story-img-accent{display:none}
-  .products-grid{grid-template-columns:1fr;gap:2px}
-  .product-item.featured{grid-column:span 1}
-  .process-grid{grid-template-columns:1fr;gap:2px}
-  .process-card{aspect-ratio:16/9}
-  .values-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .instagram-grid{grid-template-columns:repeat(2,1fr)}
-  .info-inner{grid-template-columns:1fr;gap:48px}
-  .footer-top{flex-direction:column}
-  .products-section{padding:64px 24px}
+nav{padding:16px 24px}
+.nav-links{display:none}
+.nav-hamburger{display:flex}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:32px;z-index:99}
+.nav-links.open a{font-size:1.1rem}
+section,footer{padding:64px 24px}
+.hero-content{padding:0 24px 56px}
+.hero-scroll{right:24px}
+.story{grid-template-columns:1fr;gap:40px}
+.story-img-accent{display:none}
+.products-grid{grid-template-columns:1fr;gap:2px}
+.product-item.featured{grid-column:span 1}
+.process-grid{grid-template-columns:1fr;gap:2px}
+.process-card{aspect-ratio:16/9}
+.values-grid{grid-template-columns:1fr 1fr;gap:32px}
+.instagram-grid{grid-template-columns:repeat(2,1fr)}
+.info-inner{grid-template-columns:1fr;gap:48px}
+.footer-top{flex-direction:column}
+.products-section{padding:64px 24px}
 }
 </style>
 </head>
@@ -189,319 +185,307 @@ footer{background:var(--ink);color:var(--cream);padding:56px 48px 32px}
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#"><em>Hoo</em>Ray Bakery</a>
-  <div class="nav-links" id="navLinks">
-    <a href="about.html">Our Story</a>
-    <a href="#menu">Menu</a>
-    <a href="#process">Process</a>
-    <a href="#contact">Visit</a>
-    <a href="order.html" class="nav-order">Order Now</a>
-  </div>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+<a class="nav-logo" href="#"><em>Hoo</em>Ray Bakery</a>
+<div class="nav-links" id="navLinks">
+<a href="about.html">Our Story</a>
+<a href="#menu">Menu</a>
+<a href="#process">Process</a>
+<a href="#contact">Visit</a>
+<a href="order.html" class="nav-order">Order Now</a>
+</div>
+<button class="nav-hamburger" id="hamburger" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-img" id="heroImg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Small Batch · Home Kitchen · Irvine, CA</div>
-    <h1>Baked with<br><em>Love &amp; Intention</em></h1>
-    <p class="hero-sub">Japanese-style milk breads, artisan cookies, and seasonal pastries — made in small batches, crafted to share.</p>
-    <a href="order.html" class="hero-cta">Order Now</a>
-    <a href="#menu" class="hero-cta-ghost">View Menu</a>
-  </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+<div class="hero-img" id="heroImg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-tag">Small Batch · Home Kitchen · Irvine, CA</div>
+<h1>Baked with<br><em>Love &amp; Intention</em></h1>
+<p class="hero-sub">Japanese-style milk breads, artisan cookies, and seasonal pastries — made in small batches, crafted to share.</p>
+<a href="order.html" class="hero-cta">Order Now</a>
+<a href="#menu" class="hero-cta-ghost">View Menu</a>
+</div>
+<div class="hero-scroll">
+<div class="hero-scroll-line"></div>
+<span>Scroll</span>
+</div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">Classic Milk Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Matcha Milk Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Earl Grey Tea Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Butter Cookies</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Jenny Cookies</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Canelé</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Classic Milk Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Matcha Milk Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Earl Grey Tea Loaf</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Butter Cookies</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Jenny Cookies</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Canelé</span><span class="marquee-dot">·</span>
-  </div>
+<div class="marquee-track">
+<span class="marquee-item">Classic Milk Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Matcha Milk Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Earl Grey Tea Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Butter Cookies</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Jenny Cookies</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Canelé</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Classic Milk Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Matcha Milk Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Earl Grey Tea Loaf</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Butter Cookies</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Jenny Cookies</span><span class="marquee-dot">·</span>
+<span class="marquee-item">Canelé</span><span class="marquee-dot">·</span>
+</div>
 </div>
 
 <!-- STORY -->
 <section id="story">
-  <div class="story">
-    <div class="story-img-wrap reveal-left">
-      <img class="story-img" src="market.jpg" alt="HooRay Bakery at market">
-      <img class="story-img-accent" src="cookies.jpg" alt="Jenny Cookies">
-    </div>
-    <div class="story-text reveal-right">
-      <p class="section-eyebrow">Our Story</p>
-      <h2 class="section-title">Made in a<br><em>Home Kitchen</em></h2>
-      <p>HooRay Bakery started with a simple belief — that the best things are made with care, in small batches, for the people you love.</p>
-      <p>Based in Irvine, CA, we bake Japanese-style milk breads and artisan treats using quality ingredients, no preservatives, and a whole lot of heart. Every loaf is made to order.</p>
-      <p style="color:var(--ink);font-style:italic">— [Your story here. Tell customers who you are, what inspired you, and why you bake.]</p>
-      <div class="story-signature">HooRay Bakery</div>
-    </div>
-  </div>
+<div class="story">
+<div class="story-img-wrap reveal-left">
+<img class="story-img" src="market.jpg" alt="HooRay Bakery at market">
+<img class="story-img-accent" src="cookies.jpg" alt="Jenny Cookies">
+</div>
+<div class="story-text reveal-right">
+<p class="section-eyebrow">Our Story</p>
+<h2 class="section-title">Made in a<br><em>Home Kitchen</em></h2>
+<p>My story with baking began when I was very young — my mom and I would whisk egg whites by hand, taking turns until our arms tired. Somewhere between laughter and patience, a love for baking was born.</p>
+<p>HooRay Bakery started with a simple belief: the best things are made with care, in small batches, for the people you love. Every loaf is made to order, with no preservatives and a whole lot of heart.</p>
+<p>The name says it all — <em style="font-family:'Cormorant Garamond',serif">"hoo"</em> from a decade-long nickname, and <em style="font-family:'Cormorant Garamond',serif">Ray</em> from the person who inspired me to share this joy with the world.</p>
+<a href="about.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(181,132,58,.4);padding-bottom:2px;">Read our full story →</a>
+<div class="story-signature">HooRay Bakery</div>
+</div>
+</div>
 </section>
 
 <!-- PRODUCTS -->
 <section class="products-section" id="menu">
-  <div class="products-header">
-    <div class="reveal">
-      <p class="section-eyebrow">What We Make</p>
-      <h2 class="section-title">Our <em>Menu</em></h2>
-    </div>
-    <a href="order.html" class="btn-outline reveal">Place an Order →</a>
-  </div>
-  <div class="products-grid">
-    <div class="product-item featured reveal">
-      <div class="product-img-wrap">
-        <img src="classic.jpg" alt="Classic Milk Loaf">
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Signature Bread</p>
-        <h3 class="product-name">Classic Cloudy Milk Loaf</h3>
-        <p class="product-desc">15oz · Our signature Japanese-style shokupan. Pillowy soft, lightly sweet, made with organic whole milk, heavy cream and butter. Perfect for toast or straight from the bag.</p>
-        <div class="product-price">$10</div>
-      </div>
-    </div>
-    <div class="product-item reveal">
-      <div class="product-img-wrap">
-        <img src="matcha.jpg" alt="Matcha Milk Loaf">
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Specialty Bread</p>
-        <h3 class="product-name">Matcha Milk Loaf</h3>
-        <p class="product-desc">15oz · Earthy ceremonial matcha swirled into our signature milk bread dough.</p>
-        <div class="product-price">$12</div>
-      </div>
-    </div>
-    <div class="product-item reveal">
-      <div class="product-img-wrap">
-        <img src="classic.jpg" alt="Earl Grey Milk Loaf" style="filter:sepia(.15)">
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Specialty Bread</p>
-        <h3 class="product-name">Earl Grey Tea Milk Loaf</h3>
-        <p class="product-desc">15oz · Fragrant bergamot Earl Grey steeped into every bite.</p>
-        <div class="product-price">$12</div>
-      </div>
-    </div>
-    <div class="product-item reveal">
-      <div class="product-img-wrap">
-        <img src="cookies.jpg" alt="Jenny Cookies">
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Cookies</p>
-        <h3 class="product-name">Jenny Cookies</h3>
-        <p class="product-desc">Our signature piped butter cookies — delicate, melt-in-your-mouth, and beautiful. 4pc or 8pc.</p>
-        <div class="product-price">From $6</div>
-      </div>
-    </div>
-    <div class="product-item reveal">
-      <div class="product-img-wrap">
-        <img src="market.jpg" alt="Butter Cookies &amp; More">
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Cookies &amp; Pastries</p>
-        <h3 class="product-name">Butter Cookies &amp; Canelé</h3>
-        <p class="product-desc">Classic butter cookies (12pc) and French canelé — crispy caramelized shell, custardy center. Small or large.</p>
-        <div class="product-price">From $8</div>
-      </div>
-    </div>
-  </div>
-  <div class="products-cta reveal">
-    <a href="order.html" class="btn-primary">Order Now — Pickup in Irvine</a>
-  </div>
+<div class="products-header">
+<div class="reveal">
+<p class="section-eyebrow">What We Make</p>
+<h2 class="section-title">Our <em>Menu</em></h2>
+</div>
+<a href="order.html" class="btn-outline reveal">Place an Order →</a>
+</div>
+<div class="products-grid">
+<div class="product-item featured reveal">
+<div class="product-img-wrap">
+<img src="classic.jpg" alt="Classic Milk Loaf">
+</div>
+<div class="product-info">
+<p class="product-cat">Signature Bread</p>
+<h3 class="product-name">Classic Cloudy Milk Loaf</h3>
+<p class="product-desc">15oz · Our signature Japanese-style shokupan. Pillowy soft, lightly sweet, made with organic whole milk, heavy cream and butter. Perfect for toast or straight from the bag.</p>
+<div class="product-price">$10</div>
+</div>
+</div>
+<div class="product-item reveal">
+<div class="product-img-wrap">
+<img src="matcha.jpg" alt="Matcha Milk Loaf">
+</div>
+<div class="product-info">
+<p class="product-cat">Specialty Bread</p>
+<h3 class="product-name">Matcha Milk Loaf</h3>
+<p class="product-desc">15oz · Earthy ceremonial matcha swirled into our signature milk bread dough.</p>
+<div class="product-price">$12</div>
+</div>
+</div>
+<div class="product-item reveal">
+<div class="product-img-wrap" style="position:relative;">
+<img src="classic.jpg" alt="Earl Grey Milk Loaf" style="filter:sepia(.4) saturate(1.2) hue-rotate(-10deg) brightness(.95)">
+<div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(180,140,80,.18) 0%,rgba(120,90,50,.12) 100%);pointer-events:none;"></div>
+</div>
+<div class="product-info">
+<p class="product-cat">Specialty Bread</p>
+<h3 class="product-name">Earl Grey Tea Milk Loaf</h3>
+<p class="product-desc">15oz · Fragrant bergamot Earl Grey steeped into every bite.</p>
+<div class="product-price">$12</div>
+</div>
+</div>
+<div class="product-item reveal">
+<div class="product-img-wrap">
+<img src="cookies.jpg" alt="Jenny Cookies">
+</div>
+<div class="product-info">
+<p class="product-cat">Cookies</p>
+<h3 class="product-name">Jenny Cookies</h3>
+<p class="product-desc">Our signature piped butter cookies — delicate, melt-in-your-mouth, and beautiful. 4pc or 8pc.</p>
+<div class="product-price">From $6</div>
+</div>
+</div>
+<div class="product-item reveal">
+<div class="product-img-wrap">
+<img src="market.jpg" alt="Butter Cookies &amp; More">
+</div>
+<div class="product-info">
+<p class="product-cat">Cookies &amp; Pastries</p>
+<h3 class="product-name">Butter Cookies &amp; Canelé</h3>
+<p class="product-desc">Classic butter cookies (12pc) and French canelé — crispy caramelized shell, custardy center. Small or large.</p>
+<div class="product-price">From $8</div>
+</div>
+</div>
+</div>
+<div class="products-cta reveal">
+<a href="order.html" class="btn-primary">Order Now — Pickup in Irvine</a>
+</div>
 </section>
 
 <!-- PROCESS -->
 <section class="process-section" id="process">
-  <div class="process-inner">
-    <p class="section-eyebrow reveal">How We Bake</p>
-    <h2 class="section-title reveal">From <em>Dough to Door</em></h2>
-    <div class="process-grid">
-      <div class="process-card reveal">
-        <img src="process1.jpg" alt="Preparing the dough">
-        <div class="process-label">
-          <p class="process-num">01 — Prepare</p>
-          <h3>The Dough</h3>
-          <p>Quality ingredients, slow fermentation</p>
-        </div>
-      </div>
-      <div class="process-card reveal">
-        <img src="process2.jpg" alt="Proofing the loaves">
-        <div class="process-label">
-          <p class="process-num">02 — Proof</p>
-          <h3>Rest &amp; Rise</h3>
-          <p>Each loaf proofed to perfection</p>
-        </div>
-      </div>
-      <div class="process-card reveal">
-        <img src="matcha_dough.jpg" alt="Fresh baked loaves">
-        <div class="process-label">
-          <p class="process-num">03 — Bake</p>
-          <h3>Fresh Every Time</h3>
-          <p>Made to order, baked the same day</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="process-inner">
+<p class="section-eyebrow reveal">How We Bake</p>
+<h2 class="section-title reveal">From <em>Dough to Door</em></h2>
+<div class="process-grid">
+<div class="process-card reveal">
+<img src="process1.jpg" alt="Preparing the dough">
+<div class="process-label">
+<p class="process-num">01 — Prepare</p>
+<h3>The Dough</h3>
+<p>Quality ingredients, slow fermentation</p>
+</div>
+</div>
+<div class="process-card reveal">
+<img src="process2.jpg" alt="Proofing the loaves">
+<div class="process-label">
+<p class="process-num">02 — Proof</p>
+<h3>Rest &amp; Rise</h3>
+<p>Each loaf proofed to perfection</p>
+</div>
+</div>
+<div class="process-card reveal">
+<img src="matcha_dough.jpg" alt="Fresh baked loaves">
+<div class="process-label">
+<p class="process-num">03 — Bake</p>
+<h3>Fresh Every Time</h3>
+<p>Made to order, baked the same day</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- VALUES -->
 <section class="values-section">
-  <div class="values-inner">
-    <p class="section-eyebrow reveal">Why HooRay</p>
-    <h2 class="section-title reveal">What We <em>Believe In</em></h2>
-    <div class="values-grid">
-      <div class="value-item reveal">
-        <div class="value-num">01</div>
-        <h3 class="value-title">No Preservatives</h3>
-        <p class="value-desc">Real ingredients only. No shortcuts, no additives — just flour, milk, butter, and care.</p>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">02</div>
-        <h3 class="value-title">Made to Order</h3>
-        <p class="value-desc">We bake when you order. Nothing sits on a shelf. Every loaf is fresh for you.</p>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">03</div>
-        <h3 class="value-title">Small Batch</h3>
-        <p class="value-desc">Quality over quantity. We keep batches small so every loaf gets the attention it deserves.</p>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">04</div>
-        <h3 class="value-title">Made with Love</h3>
-        <p class="value-desc">A home kitchen passion project turned community favorite — baked with heart, every single time.</p>
-      </div>
-    </div>
-  </div>
+<div class="values-inner">
+<p class="section-eyebrow reveal">Why HooRay</p>
+<h2 class="section-title reveal">What We <em>Believe In</em></h2>
+<div class="values-grid">
+<div class="value-item reveal">
+<div class="value-num">01</div>
+<h3 class="value-title">No Preservatives</h3>
+<p class="value-desc">Real ingredients only. No shortcuts, no additives — just flour, milk, butter, and care.</p>
+</div>
+<div class="value-item reveal">
+<div class="value-num">02</div>
+<h3 class="value-title">Made to Order</h3>
+<p class="value-desc">We bake when you order. Nothing sits on a shelf. Every loaf is fresh for you.</p>
+</div>
+<div class="value-item reveal">
+<div class="value-num">03</div>
+<h3 class="value-title">Small Batch</h3>
+<p class="value-desc">Quality over quantity. We keep batches small so every loaf gets the attention it deserves.</p>
+</div>
+<div class="value-item reveal">
+<div class="value-num">04</div>
+<h3 class="value-title">Made with Love</h3>
+<p class="value-desc">A home kitchen passion project turned community favorite — baked with heart, every single time.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- INSTAGRAM -->
 <section class="instagram-section">
-  <div class="instagram-inner">
-    <p class="section-eyebrow">Follow Along</p>
-    <h2 class="section-title">Find us on <em>Instagram</em></h2>
-    <a href="https://www.instagram.com/hooraysbakery/" target="_blank" class="instagram-handle">@hooraysbakery</a>
-    <div class="instagram-grid"><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="classic.jpg" alt="Classic Cloudy Milk Loaf" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="matcha.jpg" alt="Matcha Milk Loaf" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="cookies.jpg" alt="Jenny Cookies" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="market.jpg" alt="HooRay Bakery at Market" style="width:100%;height:100%;object-fit:cover"></a>
-      
-      
-      
-      
-    </div>
-  </div>
+<div class="instagram-inner">
+<p class="section-eyebrow">Follow Along</p>
+<h2 class="section-title">Find us on <em>Instagram</em></h2>
+<a href="https://www.instagram.com/hooraysbakery/" target="_blank" class="instagram-handle">@hooraysbakery</a>
+<div class="instagram-grid"><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="classic.jpg" alt="Classic Cloudy Milk Loaf" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="matcha.jpg" alt="Matcha Milk Loaf" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="cookies.jpg" alt="Jenny Cookies" style="width:100%;height:100%;object-fit:cover"></a><a href="https://www.instagram.com/hooraysbakery/" target="_blank"><img src="market.jpg" alt="HooRay Bakery at Market" style="width:100%;height:100%;object-fit:cover"></a></div>
+</div>
 </section>
 
 <!-- INFO / CONTACT -->
 <section class="info-section" id="contact">
-  <div class="info-inner">
-    <div class="info-block reveal-left">
-      <h3>Pickup &amp; <em style="font-family:'Cormorant Garamond',serif;font-style:italic">Orders</em></h3>
-      <p>All orders are pickup only from our home kitchen in Irvine, CA. Please order at least 48 hours in advance to allow time for baking.</p>
-      <div class="info-detail">
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-val">7725 Gateway, Irvine, CA 92618</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Hours</span>
-          <span class="info-row-val">By appointment — pickup times selected at checkout</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Lead Time</span>
-          <span class="info-row-val">Minimum 48 hours advance notice required</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Contact</span>
-          <span class="info-row-val"><a href="tel:9494495962" style="color:var(--ink)">(949) 449-5962</a><br><a href="mailto:hooraybakery@gmail.com" style="color:var(--gold)">hooraybakery@gmail.com</a></span>
-        </div>
-      </div>
-    </div>
-    <div class="info-block reveal-right">
-      <h3>Ready to <em style="font-family:'Cormorant Garamond',serif;font-style:italic">Order?</em></h3>
-      <p>Browse our full menu and place your order online. We'll confirm via text or email with your pickup details.</p>
-      <p style="margin-top:8px">Questions? Reach out on Instagram or send us an email — we're always happy to chat about custom orders and upcoming flavors.</p>
-      <div style="margin-top:32px;display:flex;flex-direction:column;gap:14px">
-        <a href="order.html" class="btn-primary">Place an Order</a>
-        <a href="https://www.instagram.com/hooraysbakery/" target="_blank" class="btn-outline">@hooraysbakery on Instagram</a>
-      </div>
-    </div>
-  </div>
+<div class="info-inner">
+<div class="info-block reveal-left">
+<h3>Pickup &amp; <em style="font-family:'Cormorant Garamond',serif;font-style:italic">Orders</em></h3>
+<p>All orders are pickup only from our home kitchen in Irvine, CA. Please order at least 48 hours in advance to allow time for baking.</p>
+<div class="info-detail">
+<div class="info-row">
+<span class="info-row-label">Location</span>
+<span class="info-row-val">7725 Gateway, Irvine, CA 92618</span>
+</div>
+<div class="info-row">
+<span class="info-row-label">Hours</span>
+<span class="info-row-val">By appointment — pickup times selected at checkout</span>
+</div>
+<div class="info-row">
+<span class="info-row-label">Lead Time</span>
+<span class="info-row-val">Minimum 48 hours advance notice required</span>
+</div>
+<div class="info-row">
+<span class="info-row-label">Contact</span>
+<span class="info-row-val"><a href="tel:9494495962" style="color:var(--ink)">(949) 449-5962</a><br><a href="mailto:hooraybakery@gmail.com" style="color:var(--gold)">hooraybakery@gmail.com</a></span>
+</div>
+</div>
+</div>
+<div class="info-block reveal-right">
+<h3>Ready to <em style="font-family:'Cormorant Garamond',serif;font-style:italic">Order?</em></h3>
+<p>Browse our full menu and place your order online. We'll confirm via text or email with your pickup details.</p>
+<p style="margin-top:8px">Questions? Reach out on Instagram or send us an email — we're always happy to chat about custom orders and upcoming flavors.</p>
+<div style="margin-top:32px;display:flex;flex-direction:column;gap:14px">
+<a href="order.html" class="btn-primary">Place an Order</a>
+<a href="https://www.instagram.com/hooraysbakery/" target="_blank" class="btn-outline">@hooraysbakery on Instagram</a>
+</div>
+</div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-logo"><em>Hoo</em>Ray Bakery</div>
-        <div class="footer-tagline">Small-batch bread & treats · Irvine, CA · Made with love</div>
-      </div>
-      <div class="footer-links">
-        <a href="about.html">Our Story</a>
-        <a href="#menu">Menu</a>
-        <a href="order.html">Order Now</a>
-        <a href="#contact">Contact</a>
-        <a href="https://www.instagram.com/hooraysbakery/" target="_blank">Instagram</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 HooRay Bakery · All rights reserved</span>
-      <div class="footer-social"><a href="https://www.instagram.com/hooraysbakery/" target="_blank">@hooraysbakery</a></div>
-    </div>
-  </div>
+<div class="footer-inner">
+<div class="footer-top">
+<div>
+<div class="footer-logo"><em>Hoo</em>Ray Bakery</div>
+<div class="footer-tagline">Small-batch bread &amp; treats · Irvine, CA · Made with love</div>
+</div>
+<div class="footer-links">
+<a href="about.html">Our Story</a>
+<a href="#menu">Menu</a>
+<a href="order.html">Order Now</a>
+<a href="#contact">Contact</a>
+<a href="https://www.instagram.com/hooraysbakery/" target="_blank">Instagram</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="footer-copy">&copy; 2025 HooRay Bakery &middot; All rights reserved</span>
+<div class="footer-social"><a href="https://www.instagram.com/hooraysbakery/" target="_blank">@hooraysbakery</a></div>
+</div>
+</div>
 </footer>
 
 <script>
-// Nav scroll
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
-
-// Hero image load animation
 const heroImg = document.getElementById('heroImg');
 heroImg.style.backgroundImage = "url('hero.jpg')";
-setTimeout(() => heroImg.classList.add('loaded'), 100);
-
-// Hamburger
+setTimeout(function() { heroImg.classList.add('loaded'); }, 100);
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', function() {
   navLinks.classList.toggle('open');
 });
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => navLinks.classList.remove('open'));
+navLinks.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() { navLinks.classList.remove('open'); });
 });
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      // Stagger children
       const children = e.target.querySelectorAll('.reveal, .product-item, .process-card, .value-item');
-      children.forEach((c, i) => {
-        setTimeout(() => c.classList.add('visible'), i * 100);
+      children.forEach(function(c, i) {
+        setTimeout(function() { c.classList.add('visible'); }, i * 100);
       });
     }
   });
 }, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) { observer.observe(el); });
 </script>
 </body>
 </html>
