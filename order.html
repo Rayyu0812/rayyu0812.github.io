@@ -35,7 +35,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px 
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:url('images/market.jpg') center/cover no-repeat;
+  background:url('market.jpg') center/cover no-repeat;
   opacity:.18;
 }
 .hero-inner{position:relative;z-index:1;}
@@ -280,14 +280,14 @@ nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px 
 // ─── PRODUCT DATA (from admin localStorage or defaults) ──────────────────────
 const STORAGE_KEY = 'hooray_products';
 const DEFAULT_PRODUCTS = [
-  {id:'p1',name:'Classic Milk Loaf',cat:'loaves',price:10,desc:'Pillowy soft Japanese-style milk bread. Perfectly golden crust with a feather-light crumb.',img:'images/classic.jpg',tags:['SIGNATURE','BESTSELLER'],available:true,sort:1},
-  {id:'p2',name:'Matcha Milk Loaf',cat:'loaves',price:12,desc:'Premium ceremonial matcha swirled into our classic milk bread dough. Earthy, delicate, and beautiful.',img:'images/matcha.jpg',tags:['SEASONAL'],available:true,sort:2},
-  {id:'p3',name:'Earl Grey Tea Loaf',cat:'loaves',price:12,desc:'Fragrant Earl Grey infused into every layer. Subtle floral notes with a tender crumb.',img:'images/classic.jpg',tags:['SEASONAL','FAN FAV'],available:true,sort:3},
-  {id:'p4',name:'Butter Cookies',cat:'cookies',price:10,desc:'Classic melt-in-your-mouth butter cookies, delicately crisp and rich. Baked in small batches.',img:'images/cookies.jpg',tags:['CLASSIC'],available:true,sort:4},
-  {id:'p5',name:'Jenny Cookies (Small)',cat:'cookies',price:6,desc:'Our beloved Jenny cookies in a petite gift box. Perfect for gifting or a sweet treat.',img:'images/cookies.jpg',tags:[],available:true,sort:5},
-  {id:'p6',name:'Jenny Cookies (Large)',cat:'cookies',price:10,desc:'The full Jenny cookie experience — a generous box of our signature piped cookies.',img:'images/cookies.jpg',tags:['POPULAR'],available:true,sort:6},
-  {id:'p7',name:'Canele (Single)',cat:'pastries',price:8,desc:'Classic Bordeaux-style canele. Mahogany crust, custardy center, perfumed with vanilla and rum.',img:'images/market.jpg',tags:['FRENCH'],available:true,sort:7},
-  {id:'p8',name:'Canele (Box of 6)',cat:'pastries',price:15,desc:'Six caneles presented in a beautiful gift box. A stunning treat for any occasion.',img:'images/market.jpg',tags:['GIFT','FRENCH'],available:true,sort:8}
+  {id:'p1',name:'Classic Milk Loaf',cat:'loaves',price:10,desc:'Pillowy soft Japanese-style milk bread. Perfectly golden crust with a feather-light crumb.',img:'classic.jpg',tags:['SIGNATURE','BESTSELLER'],available:true,sort:1},
+  {id:'p2',name:'Matcha Milk Loaf',cat:'loaves',price:12,desc:'Premium ceremonial matcha swirled into our classic milk bread dough. Earthy, delicate, and beautiful.',img:'matcha.jpg',tags:['SEASONAL'],available:true,sort:2},
+  {id:'p3',name:'Earl Grey Tea Loaf',cat:'loaves',price:12,desc:'Fragrant Earl Grey infused into every layer. Subtle floral notes with a tender crumb.',img:'classic.jpg',tags:['SEASONAL','FAN FAV'],available:true,sort:3},
+  {id:'p4',name:'Butter Cookies',cat:'cookies',price:10,desc:'Classic melt-in-your-mouth butter cookies, delicately crisp and rich. Baked in small batches.',img:'cookies.jpg',tags:['CLASSIC'],available:true,sort:4},
+  {id:'p5',name:'Jenny Cookies (Small)',cat:'cookies',price:6,desc:'Our beloved Jenny cookies in a petite gift box. Perfect for gifting or a sweet treat.',img:'cookies.jpg',tags:[],available:true,sort:5},
+  {id:'p6',name:'Jenny Cookies (Large)',cat:'cookies',price:10,desc:'The full Jenny cookie experience — a generous box of our signature piped cookies.',img:'cookies.jpg',tags:['POPULAR'],available:true,sort:6},
+  {id:'p7',name:'Canele (Single)',cat:'pastries',price:8,desc:'Classic Bordeaux-style canele. Mahogany crust, custardy center, perfumed with vanilla and rum.',img:'market.jpg',tags:['FRENCH'],available:true,sort:7},
+  {id:'p8',name:'Canele (Box of 6)',cat:'pastries',price:15,desc:'Six caneles presented in a beautiful gift box. A stunning treat for any occasion.',img:'market.jpg',tags:['GIFT','FRENCH'],available:true,sort:8}
 ];
 
 function loadProducts(){
