@@ -296,6 +296,21 @@ function loadProducts(){
   return DEFAULT_PRODUCTS;
 }
 
+
+// ─── MIGRATE: fix old images/ prefix in localStorage ────────────────────────
+(function migratePaths(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw){
+    try{
+      const arr = JSON.parse(raw);
+      const fixed = arr.map(p=>({...p, img: p.img ? p.img.replace('images/','') : p.img}));
+      if(JSON.stringify(arr)!==JSON.stringify(fixed)){
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(fixed));
+      }
+    }catch(e){}
+  }
+})();
+
 // ─── STATE ───────────────────────────────────────────────────────────────────
 const PRODUCTS = loadProducts().filter(p=>p.available!==false);
 let cart = {};
